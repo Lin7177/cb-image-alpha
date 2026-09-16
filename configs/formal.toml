@@ -1,0 +1,17 @@
+scope = "formal"
+version = "g5-v1"
+seed = 20260912
+batch_size = 128
+learning_rate = 0.00001
+max_epochs = 20
+patience = 2
+device = "cuda"
+gpu_memory_fraction = 0.5
+num_workers = 0
+ram_limit_bytes = 8589934592
+artifact_limit_bytes = 8589934592
+prepare_seconds = 1800
+train_seconds = 7200
+evaluate_seconds = 1800
+shard_size = 8192
+metric_probability_floor = 0.000000000001

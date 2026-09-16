@@ -1,0 +1,643 @@
+{
+  "scope": "convertible_bond_method_transfer",
+  "paper_replication_claim": false,
+  "G0_G8_process_status": "PASS",
+  "G9_executed": false,
+  "G5": {
+    "run_id": "formal-20260912T083408279881Z",
+    "metrics": {
+      "peak_gpu_bytes": 355965440,
+      "scope": "formal",
+      "splits": {
+        "test": {
+          "cnn": {
+            "accuracy": 0.4864458629092065,
+            "auc": 0.4983929804085621,
+            "balanced_accuracy": 0.5007701152691404,
+            "count": 151024,
+            "log_loss": 0.7142881033425794,
+            "negatives": 67630,
+            "positives": 83394,
+            "undefined_reason": null
+          },
+          "train_constant_probability": {
+            "accuracy": 0.4478096196630999,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 151024,
+            "log_loss": 0.6960690598373497,
+            "negatives": 67630,
+            "positives": 83394,
+            "undefined_reason": null
+          },
+          "train_majority": {
+            "accuracy": 0.4478096196630999,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 151024,
+            "log_loss": 15.25758405910195,
+            "negatives": 67630,
+            "positives": 83394,
+            "undefined_reason": null
+          }
+        },
+        "train": {
+          "cnn": {
+            "accuracy": 0.5790975088465093,
+            "auc": 0.6120031294747925,
+            "balanced_accuracy": 0.5765174558717776,
+            "count": 339682,
+            "log_loss": 0.6737942856012792,
+            "negatives": 174086,
+            "positives": 165596,
+            "undefined_reason": null
+          },
+          "train_constant_probability": {
+            "accuracy": 0.5124969824718413,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 339682,
+            "log_loss": 0.692834798889351,
+            "negatives": 174086,
+            "positives": 165596,
+            "undefined_reason": null
+          },
+          "train_majority": {
+            "accuracy": 0.5124969824718413,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 339682,
+            "log_loss": 13.47020617139995,
+            "negatives": 174086,
+            "positives": 165596,
+            "undefined_reason": null
+          }
+        },
+        "validation": {
+          "cnn": {
+            "accuracy": 0.5327805926608322,
+            "auc": 0.5443195420067692,
+            "balanced_accuracy": 0.5298545743627129,
+            "count": 123747,
+            "log_loss": 0.6933849324740011,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          },
+          "train_constant_probability": {
+            "accuracy": 0.5161498864618941,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 123747,
+            "log_loss": 0.6926521597430197,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          },
+          "train_majority": {
+            "accuracy": 0.5161498864618941,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 123747,
+            "log_loss": 13.369272704116346,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          }
+        }
+      },
+      "train_rate": 0.48750301752815867
+    }
+  },
+  "G8": {
+    "run_id": "g8-20260915T032338487327Z",
+    "results": {
+      "all_outer_results_revealed_together": true,
+      "differences": {
+        "2022": {
+          "CNN-Constant": {
+            "date_equal": 0.009597898394165916,
+            "row": 0.009053248518546386
+          },
+          "CNN-Q": {
+            "date_equal": 0.011890517348473573,
+            "row": 0.010982479872507
+          },
+          "Q-Constant": {
+            "date_equal": -0.002292618954307657,
+            "row": -0.0019292313539606143
+          },
+          "U-Constant": {
+            "date_equal": -0.0022127739080536335,
+            "row": -0.0018414089241134413
+          },
+          "U-Q": {
+            "date_equal": 7.984504625402344e-05,
+            "row": 8.782242984717303e-05
+          }
+        },
+        "2023": {
+          "CNN-Constant": {
+            "date_equal": 0.014865262248460409,
+            "row": 0.013764128770288542
+          },
+          "CNN-Q": {
+            "date_equal": 0.0124433055139338,
+            "row": 0.011966095037238555
+          },
+          "Q-Constant": {
+            "date_equal": 0.002421956734526609,
+            "row": 0.0017980337330499863
+          },
+          "U-Constant": {
+            "date_equal": 0.0024801508133618366,
+            "row": 0.001856213149704078
+          },
+          "U-Q": {
+            "date_equal": 5.8194078835227536e-05,
+            "row": 5.8179416654091654e-05
+          }
+        },
+        "2024": {
+          "CNN-Constant": {
+            "date_equal": 0.000748810541320144,
+            "row": 0.0007327727309813792
+          },
+          "CNN-Q": {
+            "date_equal": 0.004397380134734452,
+            "row": 0.004375418075948212
+          },
+          "Q-Constant": {
+            "date_equal": -0.003648569593414308,
+            "row": -0.003642645344966833
+          },
+          "U-Constant": {
+            "date_equal": -0.0037904841987430604,
+            "row": -0.0037840032440222826
+          },
+          "U-Q": {
+            "date_equal": -0.00014191460532875233,
+            "row": -0.00014135789905544982
+          }
+        }
+      },
+      "fold_intervals": {
+        "2022": {
+          "CNN-Constant": {
+            "date_equal": [
+              -0.02000377818468587,
+              0.044814817571685046
+            ],
+            "row": [
+              -0.020124097418801626,
+              0.044373399386757405
+            ]
+          },
+          "CNN-Q": {
+            "date_equal": [
+              -0.01753845572117072,
+              0.04808142459029993
+            ],
+            "row": [
+              -0.018533900243565132,
+              0.04809090339404297
+            ]
+          },
+          "Q-Constant": {
+            "date_equal": [
+              -0.009906870312671665,
+              0.0035706171515426897
+            ],
+            "row": [
+              -0.009578485741664835,
+              0.004117293260195116
+            ]
+          },
+          "U-Constant": {
+            "date_equal": [
+              -0.00980465171109116,
+              0.003836438239665029
+            ],
+            "row": [
+              -0.009581996208285998,
+              0.0044172936773951505
+            ]
+          },
+          "U-Q": {
+            "date_equal": [
+              -0.0001590759543682373,
+              0.0002883552920695944
+            ],
+            "row": [
+              -0.00016487501923811117,
+              0.0003002448649937939
+            ]
+          }
+        },
+        "2023": {
+          "CNN-Constant": {
+            "date_equal": [
+              -0.00747190831039443,
+              0.02853043174070137
+            ],
+            "row": [
+              -0.008109032824653932,
+              0.027607783961915273
+            ]
+          },
+          "CNN-Q": {
+            "date_equal": [
+              -0.002911676059576679,
+              0.02133700064062909
+            ],
+            "row": [
+              -0.0030085421892931917,
+              0.02131157487407708
+            ]
+          },
+          "Q-Constant": {
+            "date_equal": [
+              -0.013131414290505747,
+              0.01232235261356784
+            ],
+            "row": [
+              -0.013961692060770884,
+              0.012317565708611295
+            ]
+          },
+          "U-Constant": {
+            "date_equal": [
+              -0.013137149431928263,
+              0.01246907121735775
+            ],
+            "row": [
+              -0.013966221205370319,
+              0.01243615988934677
+            ]
+          },
+          "U-Q": {
+            "date_equal": [
+              -9.083722029156689e-05,
+              0.0001631710304144003
+            ],
+            "row": [
+              -9.166828470498623e-05,
+              0.00016712585282174956
+            ]
+          }
+        },
+        "2024": {
+          "CNN-Constant": {
+            "date_equal": [
+              -0.013433839736739134,
+              0.015642165632752735
+            ],
+            "row": [
+              -0.013390633632717797,
+              0.015576917375772634
+            ]
+          },
+          "CNN-Q": {
+            "date_equal": [
+              -0.0006519711909679353,
+              0.010008977512817367
+            ],
+            "row": [
+              -0.0006917670970775565,
+              0.010024179977237915
+            ]
+          },
+          "Q-Constant": {
+            "date_equal": [
+              -0.01699518251249096,
+              0.008140811866451825
+            ],
+            "row": [
+              -0.016913717101447043,
+              0.008103269736970613
+            ]
+          },
+          "U-Constant": {
+            "date_equal": [
+              -0.01718754790312627,
+              0.008022895710309248
+            ],
+            "row": [
+              -0.01706319090136834,
+              0.007986404994394415
+            ]
+          },
+          "U-Q": {
+            "date_equal": [
+              -0.00028160106998268884,
+              1.8276862889449166e-05
+            ],
+            "row": [
+              -0.0002814496687108891,
+              1.9732681497049694e-05
+            ]
+          }
+        }
+      },
+      "matrix": {
+        "2022": {
+          "CNN": {
+            "accuracy": 0.5482947770093012,
+            "auc": 0.5505605129391998,
+            "balanced_accuracy": 0.5329579595295092,
+            "count": 92246,
+            "date_equal_log_loss": 0.7055566198947371,
+            "log_loss": 0.7050558709380097,
+            "negatives": 49534,
+            "positives": 42712,
+            "undefined_reason": null
+          },
+          "Constant": {
+            "accuracy": 0.46302278689590876,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 92246,
+            "date_equal_log_loss": 0.6959587215005711,
+            "log_loss": 0.6960026224194633,
+            "negatives": 49534,
+            "positives": 42712,
+            "undefined_reason": null
+          },
+          "Q": {
+            "accuracy": 0.5225267220258873,
+            "auc": 0.5543674311865099,
+            "balanced_accuracy": 0.5351470394089775,
+            "count": 92246,
+            "date_equal_log_loss": 0.6936661025462635,
+            "log_loss": 0.6940733910655027,
+            "negatives": 49534,
+            "positives": 42712,
+            "undefined_reason": null
+          },
+          "U": {
+            "accuracy": 0.522429156819808,
+            "auc": 0.5542486513734868,
+            "balanced_accuracy": 0.5350320091891,
+            "count": 92246,
+            "date_equal_log_loss": 0.6937459475925175,
+            "log_loss": 0.6941612134953499,
+            "negatives": 49534,
+            "positives": 42712,
+            "undefined_reason": null
+          },
+          "train_majority": {
+            "accuracy": 0.46302278689590876,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 92246,
+            "log_loss": 14.837240593043083,
+            "negatives": 49534,
+            "positives": 42712,
+            "undefined_reason": null
+          }
+        },
+        "2023": {
+          "CNN": {
+            "accuracy": 0.5270336735231604,
+            "auc": 0.5268027925394769,
+            "balanced_accuracy": 0.5175336050379009,
+            "count": 113858,
+            "date_equal_log_loss": 0.707486343138322,
+            "log_loss": 0.7063410934973983,
+            "negatives": 60846,
+            "positives": 53012,
+            "undefined_reason": null
+          },
+          "Constant": {
+            "accuracy": 0.5344025013613448,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 113858,
+            "date_equal_log_loss": 0.6926210808898616,
+            "log_loss": 0.6925769647271097,
+            "negatives": 60846,
+            "positives": 53012,
+            "undefined_reason": null
+          },
+          "Q": {
+            "accuracy": 0.5208154016406401,
+            "auc": 0.529809992990035,
+            "balanced_accuracy": 0.5176113547514962,
+            "count": 113858,
+            "date_equal_log_loss": 0.6950430376243882,
+            "log_loss": 0.6943749984601597,
+            "negatives": 60846,
+            "positives": 53012,
+            "undefined_reason": null
+          },
+          "U": {
+            "accuracy": 0.5205694812837043,
+            "auc": 0.5295424593465542,
+            "balanced_accuracy": 0.5174128390265679,
+            "count": 113858,
+            "date_equal_log_loss": 0.6951012317032235,
+            "log_loss": 0.6944331778768138,
+            "negatives": 60846,
+            "positives": 53012,
+            "undefined_reason": null
+          },
+          "train_majority": {
+            "accuracy": 0.5344025013613448,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 113858,
+            "log_loss": 12.864934316408725,
+            "negatives": 60846,
+            "positives": 53012,
+            "undefined_reason": null
+          }
+        },
+        "2024": {
+          "CNN": {
+            "accuracy": 0.5327805926608322,
+            "auc": 0.5443195420067692,
+            "balanced_accuracy": 0.5298545743627129,
+            "count": 123747,
+            "date_equal_log_loss": 0.6934106378600692,
+            "log_loss": 0.6933849324740011,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          },
+          "Constant": {
+            "accuracy": 0.5161498864618941,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 123747,
+            "date_equal_log_loss": 0.692661827318749,
+            "log_loss": 0.6926521597430197,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          },
+          "Q": {
+            "accuracy": 0.5364493684695386,
+            "auc": 0.5507077547579501,
+            "balanced_accuracy": 0.5338093718752746,
+            "count": 123747,
+            "date_equal_log_loss": 0.6890132577253347,
+            "log_loss": 0.6890095143980529,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          },
+          "U": {
+            "accuracy": 0.5363523964217314,
+            "auc": 0.5511962989130662,
+            "balanced_accuracy": 0.5337096856813837,
+            "count": 123747,
+            "date_equal_log_loss": 0.688871343120006,
+            "log_loss": 0.6888681564989975,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          },
+          "train_majority": {
+            "accuracy": 0.5161498864618941,
+            "auc": 0.5,
+            "balanced_accuracy": 0.5,
+            "count": 123747,
+            "log_loss": 13.369272704116346,
+            "negatives": 63872,
+            "positives": 59875,
+            "undefined_reason": null
+          }
+        }
+      },
+      "scope": "development",
+      "test_used": false,
+      "three_fold_core_means": {
+        "CNN": {
+          "accuracy": 0.536036347731098,
+          "auc": 0.5405609491618153,
+          "balanced_accuracy": 0.526782046310041,
+          "date_equal_log_loss": 0.7021512002977094,
+          "log_loss": 0.7015939656364697
+        },
+        "Constant": {
+          "accuracy": 0.5045250582397159,
+          "auc": 0.5,
+          "balanced_accuracy": 0.5,
+          "date_equal_log_loss": 0.6937472099030607,
+          "log_loss": 0.6937439156298643
+        },
+        "Q": {
+          "accuracy": 0.5265971640453554,
+          "auc": 0.5449617263114983,
+          "balanced_accuracy": 0.5288559220119161,
+          "date_equal_log_loss": 0.6925741326319955,
+          "log_loss": 0.6924859679745717
+        },
+        "U": {
+          "accuracy": 0.5264503448417478,
+          "auc": 0.5449958032110357,
+          "balanced_accuracy": 0.5287181779656839,
+          "date_equal_log_loss": 0.6925728408052491,
+          "log_loss": 0.6924875159570537
+        }
+      },
+      "three_fold_equal_mean": {
+        "CNN-Constant": {
+          "date_equal": {
+            "interval": [
+              -0.006001784854339779,
+              0.019379140461399904
+            ],
+            "mean_difference": 0.008403990394648822
+          },
+          "row": {
+            "interval": [
+              -0.00642589462573286,
+              0.01904053287764131
+            ],
+            "mean_difference": 0.007850050006605436
+          }
+        },
+        "CNN-Q": {
+          "date_equal": {
+            "interval": [
+              -0.0021795405697743117,
+              0.02147660235616352
+            ],
+            "mean_difference": 0.009577067665713942
+          },
+          "row": {
+            "interval": [
+              -0.002639915429330241,
+              0.021246320310901713
+            ],
+            "mean_difference": 0.009107997661897923
+          }
+        },
+        "Q-Constant": {
+          "date_equal": {
+            "interval": [
+              -0.009152333596252539,
+              0.0038225651854383105
+            ],
+            "mean_difference": -0.0011730772710651187
+          },
+          "row": {
+            "interval": [
+              -0.009350141589553175,
+              0.0037040565535647195
+            ],
+            "mean_difference": -0.0012579476552924869
+          }
+        },
+        "U-Constant": {
+          "date_equal": {
+            "interval": [
+              -0.009242731401406419,
+              0.0038384744838556827
+            ],
+            "mean_difference": -0.001174369097811619
+          },
+          "row": {
+            "interval": [
+              -0.009424240544416547,
+              0.00370290313875598
+            ],
+            "mean_difference": -0.0012563996728105487
+          }
+        },
+        "U-Q": {
+          "date_equal": {
+            "interval": [
+              -0.00011155354487894884,
+              9.649251222682217e-05
+            ],
+            "mean_difference": -1.29182674650045e-06
+          },
+          "row": {
+            "interval": [
+              -0.00010896850758675722,
+              9.968463284983905e-05
+            ],
+            "mean_difference": 1.5479824819382888e-06
+          }
+        }
+      },
+      "uncertainty": "paired 20-calendar-trading-day blocks,500 draws,95% percentile descriptive intervals; no confirmation or causality"
+    }
+  },
+  "limitations": [
+    "Process completion does not establish predictive validity",
+    "G5 Final Test has been viewed and is not reusable as unseen data",
+    "G8 uses development intervals only, including previously used 2024",
+    "No evidence of stable primary log-loss advantage; modest ranking point estimates remain",
+    "Private source data, predictions, images, checkpoints and local manifests are not distributed"
+  ],
+  "provenance_sha256": {
+    "artifacts/runs/formal-20260912T083408279881Z/metrics.json": "87ff00e53e9bcc0aa06879ff7c24e82a7d807b88add9471cffa9bc2a8e31f2cc",
+    "artifacts/runs/formal-20260912T083408279881Z/g5-acceptance.json": "b54d479b423cc61cf0ac5baf91bddb7b00027f9de8448328d2f916ae3c211933",
+    "artifacts/research/G8/g8-20260915T032338487327Z/results.json": "b4618dac99a9b708a5de78e1ac19de8bf6085fba6176613fdfe8ef290c67d5f3",
+    "artifacts/research/G8/g8-20260915T032338487327Z/g8-acceptance.json": "d6941220e8e7078d628eea343a095dccbb22c0c9bd68481ab55a78e28b816a18",
+    "artifacts/g6-20260914T015118888478Z/verification.json": "7369267e663a36f0077a153eb39c34ec17ebb6d209a4393ca29fcffb79b5ffc3"
+  }
+}

@@ -1,0 +1,14 @@
+scope = "smoke"
+seed = 20260912
+selection = "sample_id_ascending"
+train_count = 256
+validation_count = 128
+batch_size = 128
+learning_rate = 0.00001
+max_epochs = 4
+patience = 2
+training_seconds_limit = 300
+device = "cuda"
+gpu_memory_fraction = 0.5
+inference_atol = 0.0000001
+inference_rtol = 0.000001

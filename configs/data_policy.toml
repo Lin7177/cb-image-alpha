@@ -1,0 +1,21 @@
+[data]
+policy_version = "1.1"
+universe = "catalog_intersect_historical_identity"
+timestamp_policy = "encoded_wall_clock_session"
+timezone = "Asia/Shanghai"
+availability_policy = "assumed_session_eod"
+decision_clock = "23:59:59"
+price_policy = "catalog_price_no_coupon"
+volume_policy = "catalog_units"
+invalid_bar = "fail"
+duplicate_session = "fail"
+
+[samples]
+image_days = 20
+ma_days = 20
+horizon = 5
+gap_policy = "exclude_no_compression"
+zero_volume_policy = "exclude_display_window"
+missing_endpoint_policy = "exclude_and_count"
+future_volume_policy = "do_not_filter"
+zero_return_label = 0
