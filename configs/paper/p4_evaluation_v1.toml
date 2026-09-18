@@ -1,0 +1,65 @@
+protocol = "paper-p4-evaluation-v1"
+status = "FROZEN"
+oos_inventory_sha256 = "531017292abba4ad1c8b66d66281b59bfbdc2cfa565e8400b9086164f1698788"
+parent_protocol = "paper-p3-training-v1"
+parent_p3_audit = "artifacts/paper-v1/p3-paper-training-v1/p3-final-audit.json"
+oos_scope = "official OOS years 2001-2019"
+oos_access = "single_read_once_after_freeze"
+model_selection = "frozen five P3 best checkpoints"
+retraining = false
+parameter_tuning = false
+returns_or_backtest = false
+endpoint_verified = false
+strict_leakage_free_claim = false
+
+[inputs]
+archive_manifest = "artifacts/paper-v1/acquire-20260917T010443459965Z/recovery-1/manifest.json"
+image_shape = [64, 60]
+label = "Ret_month"
+positive_rule = "ret > 0"
+normalization = "member-specific sealed Train statistics; no OOS refit"
+
+[metrics]
+primary = ["cross_entropy", "roc_auc", "balanced_accuracy", "accuracy", "brier"]
+aggregation = "per-member plus equal-softmax probability mean on common OOS rows"
+confidence_intervals = false
+subperiod_selection = false
+
+[execution]
+order = "verify inputs, decode OOS once, restore members 0..4, fixed metrics, seal"
+resource_budget_seconds = 7200
+new_artifact_limit_bytes = 8589934592
+no_second_pass = true
+
+[gates]
+preflight = "dual independent protocol audit"
+input_integrity = "manifest/hash/schema/image-row/sample-id mapping and OOS allowlist"
+model_restore = "fresh process restore each sealed best checkpoint"
+acceptance = "dual independent final audit"
+p5 = "not authorized"
+
+archive_sha256 = "be0e9bb378d705c3c842bdadcd6a9961a0a768603e9eda9c099228a07f360dcc"
+oos_inventory = "artifacts/paper-v1/p4-oos-inventory.json"
+oos_inventory_sha256 = "531017292abba4ad1c8b66d66281b59bfbdc2cfa565e8400b9086164f1698788"
+p3_final_audit_sha256 = "bc7a999de27fd8d75d2c5cd346018bee1634817b5c30ac6bb85a1c3cdd8af162"
+p3_seal_manifest_sha256 = "990857471f7b61e241337d43323aeb66102c0d9923e5b6fb02deba9f8566ee6a"
+oos_years = [2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019]
+oos_sample_id = "year*1000000000+original_archive_row; source order year ascending then row"
+invalid_return = "exclude nonfinite or -99; never coerce NaN"
+invalid_ewma = "exclude nonfinite or nonpositive"
+invalid_image = "nonbinary, blank, row mismatch or ID/date mismatch => BLOCKED"
+threshold = "positive class probability >= 0.5"
+auc_single_class = "null with reason"
+primary_aggregation = "pooled all valid OOS rows in fixed order; yearly table descriptive only"
+common_rows = "intersection of identical sample_id/date/label and finite predictions from all five members, determined before metrics"
+
+exact_data_member_count = 38
+metadata_members_rejected = true
+exact_data_member_pattern = "monthly_20d/20d_month_has_vb_[20]_ma_{year}_{images.dat,labels_w_delay.feather}"
+resource_rss_tree_limit_bytes = 8589934592
+resource_monitor_interval_seconds = 1
+minimum_free_disk_bytes = 10737418240
+resource_budget_scope = "OOS decode + five restores/inference + metrics + seal"
+per_member_wall_seconds = 7200
+
+

@@ -487,3 +487,19 @@ B冻结完成：研究/工程先独立后交叉，同意FROZEN，无实质分歧
 **P3 PASS，停止，不进入P4。** 用户授权的五成员真实训练按paper-p3-training-v1顺序完成：5/5 passed、无重试，累计22229.266秒；各成员耗时4094.266/5088.203/3114.594/3009.422/6887.344秒，均低于7200秒，峰值监督RSS均低于8GiB，新增产物1177430223B低于8GiB。最佳epoch为6/8/4/4/12，均early_stopped。每成员Validation预测233553行、probe128行，checkpoint marker链、状态/概率/ID、归一化和hash均经研究/工程独立核验及交叉质疑。seal manifest与最终receipt见artifacts/paper-v1/p3-paper-training-v1/p3-final-audit.json；封存状态PASS。
 
 P3 PASS只表示冻结协议下的训练、恢复、封存与审计完成，不表示预测有效性、严格无泄漏或endpoint已验证：endpoint_verified=false、strict_leakage_free_claim=false；OOS持续封存，未计算不同Validation集合的ensemble，未开展收益分析。资源RSS为1秒采样，Windows持久性限制保留。下一入口P4需另行冻结评价协议并获得明确授权，当前不自动进入。
+
+## P4 OOS evaluation protocol (paper-p4-evaluation-v1, IN_REVIEW)
+
+P4 is a one-time evaluation of the five sealed P3 best checkpoints on official OOS years 2001–2019. It does not retrain, tune, select a member, alter P1–P3, or run returns/backtests. The Ret_month endpoint limitation is inherited: unverified and strict_leakage_free_claim=false.
+
+After dual audit, the protocol verifies the immutable source manifest, exact OOS allowlist, schema, image row mapping and labels, then restores members 0–4 sequentially with each sealed Train normalization. It records fixed per-member cross-entropy, ROC AUC when both classes exist, balanced accuracy, accuracy and Brier, plus one equal-softmax probability mean on common OOS rows. No subperiod selection, confidence intervals, calibration, threshold choice, tuning or second pass is allowed. Unexpected count or mapping mismatch is BLOCKED. Raw OOS images are not copied. P4 PASS means the one-time evaluation and audit completed, not that prediction validity or endpoint safety was established.
+
+### P4 协议修订依据（2026-09-18）
+
+双审指出初稿不能冻结：P1 manifest 不含 OOS 成员清单，P3 只绑定路径而非摘要，且无效标签、阈值、共同样本集与资源口径不够确定。已生成仅含 ZIP 中央目录元数据的 `artifacts/paper-v1/p4-oos-inventory.json`（不解压、不读取内容），并将 archive/inventory/P3 audit/seal SHA、2001–2019 白名单、sample_id 顺序、非有限/-99 与图像异常处理、p≥0.5、单类 AUC null、pooled 主指标、固定五成员交集和一次性资源边界写入 `configs/paper/p4_evaluation_v1.toml`。协议仍 IN_REVIEW，未解封 OOS；修订后需重新双审。
+
+P4 工程复审又发现 inventory 含 38 个数据成员及 38 个 macOS 元数据成员。已将 inventory 拆为 `data_members`/`metadata_members`，冻结精确 38 个数据成员模式并显式拒绝 metadata；补充 OOS 解码、五次恢复推理、指标和封存共用的总墙钟、进程树 RSS 8GiB/1秒采样、产物8GiB和空闲盘10GiB边界。修订后再次双审。
+
+### P4 协议冻结（2026-09-18）
+
+`paper-p4-evaluation-v1` 已由研究/工程 Agent 独立复审并交叉确认 FROZEN，配置与 `artifacts/paper-v1/p4-protocol-freeze.json` 绑定。精确允许 38 个真实 OOS 数据成员（19 年×图像/标签），38 个 macOS metadata 成员拒绝；archive、inventory、P3 audit/seal 摘要及资源监督口径已绑定。当前尚未读取 OOS 内容，`execution_authorized=false`；endpoint 仍未验证且不得宣称严格无泄漏。下一步才是一次性执行、封存和最终双审，异常即 BLOCKED，不进入 P5。
