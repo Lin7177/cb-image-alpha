@@ -480,3 +480,10 @@ B冻结完成：研究/工程先独立后交叉，同意FROZEN，无实质分歧
 ### P3执行授权（2026-09-18）
 
 用户已批准当前P3：先实现生产训练器、CPU/CUDA合成preflight及故障注入、双独立与交叉审计；全部PASS后无需再次确认，立即按冻结协议执行五成员、封存及最终双审。当前IMPLEMENTING，预检NOT_RUN、真实fit=0，不标READY/PASS。授权绑定artifacts/paper-v1/p3-execution-authorization.json，不改冻结配置快照。任何非预期预检/训练门禁失败立即停止汇报，不自动修复重试、不追加seed/调参；P1/P2及OOS边界不变，P3结束停止，不进P4。
+
+
+### P3最终验收（2026-09-18）
+
+**P3 PASS，停止，不进入P4。** 用户授权的五成员真实训练按paper-p3-training-v1顺序完成：5/5 passed、无重试，累计22229.266秒；各成员耗时4094.266/5088.203/3114.594/3009.422/6887.344秒，均低于7200秒，峰值监督RSS均低于8GiB，新增产物1177430223B低于8GiB。最佳epoch为6/8/4/4/12，均early_stopped。每成员Validation预测233553行、probe128行，checkpoint marker链、状态/概率/ID、归一化和hash均经研究/工程独立核验及交叉质疑。seal manifest与最终receipt见artifacts/paper-v1/p3-paper-training-v1/p3-final-audit.json；封存状态PASS。
+
+P3 PASS只表示冻结协议下的训练、恢复、封存与审计完成，不表示预测有效性、严格无泄漏或endpoint已验证：endpoint_verified=false、strict_leakage_free_claim=false；OOS持续封存，未计算不同Validation集合的ensemble，未开展收益分析。资源RSS为1秒采样，Windows持久性限制保留。下一入口P4需另行冻结评价协议并获得明确授权，当前不自动进入。
