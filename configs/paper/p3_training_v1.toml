@@ -1,0 +1,131 @@
+protocol = "paper-p3-training-v1"
+status = "FROZEN"
+training_authorized = false
+preflight_status = "NOT_RUN"
+parent_protocol = "paper-b-v1"
+parent_config_sha256 = "434b3fffd407ad262bd4ba583f6e29e6ece97fb43b6c7acf9e53c855955e7c35"
+p2_acceptance_sha256 = "d6e1484d4e7d5093c0e15c69a0b460a96d9712ab39bb6d376b6a6b0a8a48b190"
+p2_manifest_sha256 = "c5cc0996ae7c34f0a98f89a78491c8b3b0d5192dce5e95f1d4b12e30001809e5"
+p2_members_sha256 = "b9883b15f7bbeebf9fb62a9daa5577fb45ab441798ca067a75149539c4161d94"
+
+[scope]
+members = [0, 1, 2, 3, 4]
+execution_order = "sequential"
+logical_fits = 5
+extra_real_smoke_fits = 0
+hyperparameter_search = false
+oos_access = false
+endpoint_verified = false
+strict_leakage_free_claim = false
+use_p2_index_and_normalization_without_refit = true
+
+[resources]
+preflight_wall_seconds = 1800
+member_wall_seconds = 7200
+all_members_wall_seconds = 36000
+seal_wall_seconds = 1800
+all_execution_wall_seconds = 39600
+cpu_threads = 4
+num_workers = 0
+rss_tree_limit_bytes = 8589934592
+torch_cuda_reserved_limit_bytes = 6442450944
+new_artifact_limit_bytes = 8589934592
+minimum_free_disk_bytes = 10737418240
+monitor_interval_seconds = 1
+ledger_interval_seconds = 5
+monitor_scope = "supervisor_plus_all_descendants_RSS_sampled"
+unknown_interruption_time = "charge_entire_remaining_member_budget_and_stop"
+
+[numerics]
+precision = "inherit_float32_no_amp"
+deterministic_algorithms = true
+cudnn_benchmark = false
+cudnn_deterministic = true
+allow_tf32 = false
+cublas_workspace_config = ":4096:8"
+optimizer_foreach = false
+optimizer_fused = false
+gradient_clipping = false
+lr_scheduler = false
+nonfinite_action = "fail_whole_batch_no_auto_retry"
+
+[loader]
+train_shuffle = true
+validation_shuffle = false
+drop_last = false
+pin_memory = false
+persistent_workers = false
+validation_loader_seed_offset = 1000000
+normalization = "inherit_exact_P2_float32_application"
+
+[early_stopping]
+metric = "validation_sample_weighted_cross_entropy"
+reduction = "sum_float32_per_sample_loss_in_float64_divide_exact_count"
+minimum_improvement = 0.0
+patience = 2
+max_epochs = 50
+epoch_numbering = "1_to_50"
+initial_best_loss = "positive_infinity"
+ties = "not_improved"
+best_checkpoint = "strictly_lowest_validation_loss_earliest_tie"
+if_patience_and_cap_same_epoch = "early_stopped"
+cap_without_patience_status = "capped"
+capped_allowed_for_protocol_completion = true
+
+[checkpoint]
+commit_unit = "complete_training_plus_validation_epoch"
+initial_epoch_zero_checkpoint = true
+immutable_epoch_directories = true
+atomic_commit_marker_last = true
+save = ["model_and_BN", "Adam_and_step", "CPU_RNG", "all_CUDA_RNG", "Python_RNG", "NumPy_RNG", "train_loader_RNG", "validation_loader_RNG", "epoch_and_global_step", "best_loss_epoch_stale", "full_history", "input_code_environment_fingerprints", "resource_ledger", "validation_sample_ids_probabilities_labels"]
+resume_from = "latest_committed_epoch_must_verify_no_silent_fallback"
+partial_epoch = "retain_partial_artifacts_replay_from_last_commit_only_after_approval"
+fresh_process_restore = true
+same_device_and_environment_required = true
+comparison = "exact_numeric_trajectory_tensors_rng_ids_same_batch_same_device"
+operational_history = "truthful_append_only_not_compared_for_equality"
+probe_rng = "eval_no_grad_snapshot_and_restore_all_rng"
+corrupt_latest_commit = "BLOCKED_no_fallback"
+commit_authority = "marker_hash_chain_authoritative_best_pointer_rebuildable"
+ledger_authority = "live_append_only_ledger_never_rollback_to_checkpoint_snapshot"
+
+[recovery]
+automatic_retries = 0
+automatic_resumes = 0
+maximum_user_approved_continuations_per_batch = 1
+restart_as_new_seed_or_new_run = false
+prior_time_and_artifacts_count = true
+failed_member_stops_later_members = true
+without_trustworthy_budget_or_checkpoint = "BLOCKED"
+code_or_protocol_change_requires_new_audit = true
+
+[artifacts]
+require_clean_code_snapshot = true
+archive_inputs = "hashes_plus_P2_index_snapshot_no_raw_image_copy"
+validation_predictions = "each_committed_epoch_member_validation_only"
+seal_all_five_best = true
+ensemble = "inherit_all_five_equal_softmax_probabilities"
+fixed_restore_probe = "first_128_saved_validation_positions_of_each_member"
+completion_requires_all_five_and_seal_audit = true
+partial_or_failed_batch_never_completed = true
+accuracy_improvement_required = false
+
+[gates]
+protocol_review = "dual_independent_then_cross"
+preflight = "same_production_trainer_on_synthetic_CPU_and_CUDA_fixture_before_any_real_fit"
+preflight_faults = ["resume_after_committed_epoch", "interrupt_during_epoch", "incomplete_commit", "corrupt_checkpoint", "nonfinite_loss_or_gradient", "resource_limit", "duplicate_or_missing_ids", "fingerprint_mismatch", "forbidden_OOS_path"]
+implementation_audit = "dual_before_real_start"
+user_start_confirmation = "required_after_protocol_report"
+final_acceptance = "dual_independent_then_cross"
+p4 = "not_authorized_OOS_remains_sealed"
+
+[preflight_fixture]
+input = "synthetic_binary_I20_only_no_market_rows"
+train_samples = 256
+validation_samples = 128
+continuous_epochs = 3
+interrupt_after_committed_epoch = 1
+cpu_and_cuda_compared = "each_against_its_same_device_continuous_run_not_cross_device"
+production_runner_required = true
+model_batch_optimizer = "same_as_frozen_B_no_alternate_toy_trainer"
+preflight_attempts = "failures_retained_total_budget_not_reset"

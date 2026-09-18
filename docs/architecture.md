@@ -262,3 +262,86 @@ quarter-loss.png中的2020–2023为样本内，2024为已用于选择的Validat
 | H7 当前信息预测力弱 | U/Q排序关联有限，log loss只两折改善且区间跨0 | 削弱当前有限标准化OHLCV方法族的稳定概率优势假设；不能推导原始全部信息无效或CV路线无效 |
 
 建议不进入G9训练，停止当前CNN优化轴，保留开发性结果。理由：数值方法尚无稳定主指标优势，量化差不是突出瓶颈；第二seed即使改善也仅增加单次敏感性证据，不能解决未见数据缺失/不稳定概率优势；负或不确定则同样支持停止，当前信息收益不足以支付额外6次CNN。尺度特征分支尚无直接证据指向尺度是关键损失，不应为补齐Gate尝试。任何后续新研究需提出能改变决策的单一问题、独立协议及用户批准。此处是G8建议，不执行G9、不把G9标PASS。
+
+
+## Paper B协议（paper-b-v1，FROZEN，2026-09-17）
+
+用户明确批准接受官方Date代理，从原端点阻断进入受限paper-faithful路线。此处覆盖A调查等待裁决状态，不覆盖旧G0–G8及历次事实。Ret_month实际endpoint不可验证，跨OOS风险未排除；不得宣称严格leakage-free OOS。公开OOS文件继续封存，曝光过的网页示例不用于任何设计选择。
+
+唯一初始配置I20/R20使用作者公开月末图像+Ret_month；输入包摘要、开发年份与参数见configs/paper/paper_b_v1.toml。1993–2000按年升序、各年保持文件原行序；sample_id由year+原行号定义，StockID/Date作唯一性核对。所有标的，不做市值/收益幅度/tstat筛选；先排除非有限/占位收益，再排除非有限/非正EWMA，再应用2000-12-01严格小于代理，描述已审计预期778507行，实际P2须重新对账后冻结索引。二分类ret>0为1、零及有限负值为0。
+
+明确保留的实现偏离：不复刻官方np.where把NaN变0的缺陷；有限值修正沿用P1已审定方向，意味着不是逐行bug-for-bug复刻，排除数必须保存。全图像不另加空白/形态筛选；发现异常则阻断。标准化遵循论文：逐成员仅自身70%训练图的全部像素总体mean/std；不采用官方各年头50000图的含OOS归一化。修正这两项不等于声称剩余协议无泄漏。
+
+每成员独立CPU torch.randperm，floor(0.7N)训练、余数验证；5组split/model/shuffle独立固定seed见配置，系本项目可复现选择，非论文原seed。样本ID列表/每成员分区/归一化均保存摘要。70/30池内随机和重叠窗口依赖被保留，不能称内部时间独立验证。单成员只看自身validation loss，严格下降才刷新best，patience2；最佳checkpoint恢复，五成员全部等权softmax概率平均，不平均logits，禁止挑seed。50epoch是代码上限，触顶未早停标capped，不称已达到早停条件。
+
+CNN复用本仓库已独立实现且冻结的PaperCNN（708866参数）；不修改旧文件，不导入参考代码。训练采用float32无AMP、Adam lr1e-5/default betas/eps/zero weight decay、batch128、shuffle仅训练、drop_last=false，模型RNG和loader RNG分开。本机现代PyTorch及未复刻官方dummy-forward随机数消耗为已知偏离。只支持可得I20/R20入口，九组完整范围仍有数据缺口。
+
+P2入口/产物：独立paper_replication包，协议校验、只允许开发年份的读取器、源行映射与过滤账本、五成员索引、逐成员训练像素统计、自有CNN绑定和可恢复训练状态的合成测试。P2程序预算CPU墙钟累计30分钟、新产物1GiB（复用已解压数据，不重复生成图像）；内存<=4GiB；不做真实样本前反向、真实训练或OOS推理。合成测试固定小fixture，无模型选择。PASS要求输入摘要、793019→778507对账、每个成员内部train/validation互斥且并集为同一eligible池（成员间允许交叉）的70/30分区、训练统计无验证/OOS参与、保存加载/RNG/早停/概率平均合成验证、双独立交叉验收。
+
+P3运行前另冻结GPU/CPU时间、RAM/VRAM/磁盘、五fit总预算及恢复政策。只允许训练的五成员，不附加真实smoke或搜索；不够预算则阻断，不缩样本/epoch/成员凑完成。P4在任何OOS解封前另冻结评价表/指标/分位/权重/缺失规则；P2完成不自动授权P4。协议实质变化仍双审，不根据中途结果修改。
+
+
+B冻结补充：manifest SHA绑定16年度文件摘要，执行核验每项；自有模型源与uv.lock SHA纳入配置。每成员randperm前544954为Train、后233553为Validation，保存原顺序索引。二值图以int64精确白像素计数、float64总体mean/std(ddof=0)，应用为float32 uint8/255→减均值→除std；零std或非二值立即失败。P2唯一attempt，父程序监督墙钟1800秒、进程树RSS4GiB（采样式监测，非OS硬配额）、新增产物1GiB；失败不自动重试或清零。P2若PASS依Gate停止规则交接，不把其PASS当成P3预算冻结。
+
+
+### P2实际验收结果（paper-b-v1）
+
+唯一准备批次artifacts/paper-v1/p2-paper-b-v1完成：793019原行，排除6542无效收益、有效收益后0无效EWMA、7970有效尾部，778507保留；sample_id=year*1000000000+原行号（原row均<1e9）。每成员544954/233553，五固定seed排列、IDs与训练像素统计经两审独立重算一致。归一化mean约0.10626–0.10631、std约0.30817–0.30823，仅各自Train参与。原字段映射及全部保留图白像素以独立sum/255方法重核通过。
+
+6项新增合成fixtures通过，完整回归128 passed/2 skipped。保存加载精确相等仅覆盖CPU PaperCNN推理和CPU小MLP Adam/dropout/shuffle状态恢复；没有真实训练或CUDA恢复验收。P3前需实现并验证真实训练器、GPU状态及资源策略，不能把P2数据准备当作已跑通正式训练。
+
+准备监督20.531秒、观测worker子树RSS峰913436672B、新产物约116.8MB；0.5秒采样不含监督父进程，非瞬时硬上限。全套测试11.657秒、独立源映射核验14秒，另首轮合成12.19秒；这些额外检查的RSS未统一监督，不宣称所有P2操作都有同等资源观测。辅助对账首次object dtype异常已留痕，修正读取类型后完成，未重跑唯一准备批次。P2验收通过后停止，不自动进入P3或解封OOS。
+
+
+## P3 Training Protocol（paper-p3-training-v1，FROZEN，2026-09-18）
+
+本轮只制定/冻结协议；真实训练器尚未实现验收，CUDA恢复preflight=NOT_RUN，training_authorized=false。协议通过不等于实现通过，也不授权开训。用户确认后仍须先完成真实训练器的合成CPU/CUDA验收及实现双审，任何真实fit之前保存不可变启动receipt。协议机器入口configs/paper/p3_training_v1.toml；继承paper-b-v1及P2 index/members/归一化，父配置与P2验收/manifest/members哈希绑定，旧文件不改。
+
+### 范围与预算
+
+唯一I20/R20批次按member0→4顺序运行，共5个logical fit，固定P2 sample_id、模型/split/shuffle种子、训练544954/验证233553及各自归一化，不重建、不补样本、不做额外真实smoke。所有标的/Date proxy/NaN修正/70-30依赖按B继承。endpoint未验证且跨OOS风险未排除，禁止严格leakage-free声明；不访问2001–2019图像、标签、预测或示例网页。
+
+| 资源 | 固定上限及解释 |
+|---|---|
+| 单成员执行墙钟 | 7200秒，含数据读取、训练、验证、checkpoint I/O及该成员获批恢复片段 |
+| 五成员合计 | 36000秒（10小时）；顺序执行，不是额外CPU+GPU时间额度 |
+| 前置实现合成验收 / 封存 | 各1800秒；执行全阶段合计39600秒（11小时），失败/恢复不清零 |
+| 主机内存 | 监督父进程+全部后代RSS求和<=8GiB，每1秒采样；共享页可重复计量，非OS硬配额 |
+| GPU | 单GPU；torch allocator reserved<=6GiB，同时设置按实际设备总量计算的allocator fraction；不是整个GPU进程/驱动显存硬限制，其他应用占用导致OOM时停止 |
+| 产物 / 空闲盘 | 新P3目录<=8GiB，启动需>=10GiB空闲；含临时/失败/所有epoch快照，原P2输入不重复复制图像 |
+| CPU/loader | torch CPU线程4，num_workers=0，pin_memory=false，不并行成员 |
+
+这些是研究预算选择，不是基准测速或完成时长保证。本机已只读核实5060 Laptop 8151MiB、driver581.83、RAM33447333888B、D盘可用约41.8GB，启动时再核验。每秒程序监督资源、每5秒写持久化账本；Agent只在结束/失败/异常介入，不高频读取日志。墙钟达到上限立即终止并保留证据，写文件前估算余量，完成后复核；不因预算不足缩减样本、成员或擅改epoch。额外CPU人工审阅不伪装实测GPU用时。
+
+### 训练与早停语义
+
+模型/Adam lr1e-5、betas/eps/weight_decay、batch128、50epoch/patience2、float32无AMP等完全继承B。补充执行确定性：cudnn benchmark=false、deterministic=true、torch deterministic_algorithms=true、TF32关闭、CUBLAS_WORKSPACE_CONFIG=:4096:8（初始化CUDA前），Adam foreach/fused=false；不支持则BLOCKED，不关闭确定性过验收。无scheduler/梯度裁剪/校准，首次模型初始化前设置该成员固定model seed；训练loader独立shuffle seed，验证loader使用shuffle_seed+1000000的独立generator，不消耗模型随机流。validation不shuffle、drop_last=false；每epoch必须对账train/val各完整无缺重一次。
+
+每epoch训练后model.eval/no_grad跑自己的全部Validation；以float32逐样本CE转float64求和再除精确样本数作为唯一早停指标，不能把最后不满batch等权平均。best初值+inf；严格下降才更新，平手保留较早best并stale+1；连续2次不下降停止。epoch1–50编号，若第50次同时满足patience则early_stopped，否则capped。capped是预先允许的上限终态，必须公开标注，不宣称已达到早停条件，不据此延长训练。全5个成员均early_stopped或capped、最佳权重和产物全部验真方可completed；任何资源/数值/输入错误为failed/BLOCKED。准确率改善或超过基线不是PASS条件。
+
+### checkpoint、恢复与合成验收
+
+每成员初始化后保存epoch0状态；每个训练+完整验证epoch生成不可变目录，保存模型含BN、Adam状态/step、CPU及所有CUDA RNG、Python/NumPy RNG、train/val loader RNG、epoch/global_step、best_loss/best_epoch/stale、完整history、代码/环境/输入摘要、资源账本、该epoch验证sample_id/label/概率及loss。先写临时目录并flush/验证摘要，最后原子提交commit marker，best指针只引用已提交epoch。禁止部分epoch冒充完成、保存张量共享可变引用、只存best而丢last恢复状态；失败临时文件保留、计预算。
+
+恢复必须同一run/member/代码/环境/设备，从最新已提交的完整commit（含epoch0）在新进程恢复；该最新commit必须通过hash校验，损坏则BLOCKED，不跳过它静默退回更早commit；重建对象后恢复全部RNG，重新进入下一epoch。中断epoch不支持中途batch续行，保留partial并仅在获准后按原RNG从上次commit重放，计算耗时照计；不挑表现更好的旧checkpoint续训。首次正式运行前，同一生产训练器在固定合成数据上测试连续vs中断恢复：CPU和CUDA分别与同设备连续执行比较模型/BN/Adam/step/RNG/loader顺序及数值history逐项精确一致，同batch推理精确相等，不要求CPU与CUDA互相相等，也不放宽数值容差。耗时、RSS、PID、路径、时间戳等操作历史保留真实差异，只验结构、单调及预算。测试断点前后、epoch写入中断/残缺commit、损坏hash、非有限值、资源触顶、缺重ID、输入摘要变动和OOS路径拒绝。P2 CPU测试不替代该验收；全部为人工fixture，无真实smoke/调参，失败修实现后保留测试失败账，不清零preflight预算。
+
+### 失败/中断/重试
+
+零自动重试、零自动恢复；任一成员失败即停后续成员，不重跑已完成成员，不换seed或另起run清零。整个批次最多一次额外的用户明确批准续行，不自动获得该批准；需先诊断、验证commit及剩余单成员/总预算。worker终止但监督尚存时记录真实执行耗时；监督也中断且耗时无法可靠界定时，保守占满该成员尚余预算并BLOCKED，不能计零或从checkpoint时间猜测。若需要增预算或修改协议/代码，先独立审计并交用户裁决，当前冻结协议不默认允许。
+
+启动前失败不消耗新的logical fit，但消耗前置验收预算；真实fit在读取首个真实batch之前登记为started，任何失败仍保留计数。历史表现不能作为恢复、放弃某成员或改变参数的依据。用户主动暂停也遵守同样完整commit/资源规则，不把额度恢复当作进程已终止的证据。
+
+### 产物、封存与门禁
+
+启动receipt绑定冻结P1/P2配置、原输入manifest/16开发文件、P2 pool/5成员索引/统计、训练器代码快照/干净提交、uv.lock、Python/torch/CUDA/cuDNN/driver/GPU、确定性环境、所有种子与预算。新模块实现，不修改已绑定P1/P2代码。run目录记录全部退出码/日志/资源/失败恢复、epoch快照与验证预测、样本排除和计数；先验fingerprints失败就停，不从OOS或其他数据补足。
+
+封存五个各自最佳模型与其训练归一化、选择epoch/验证loss、状态early_stopped/capped及文件摘要。每成员固定保存Validation顺序的前128条作为恢复推理对账，使用相同batch形状在新进程恢复，与该best验证输出逐tensor精确核对；验证预测全量sample_id无缺重、有限概率且行数233553。不得把五成员不同验证集直接拼成一份同样本集成得分；仅合成同样本logits验证五softmax均值，实际共同OOS集成留P4。无测试集读取。
+
+状态层次：本轮protocol FROZEN/训练授权false；实现+CPU/CUDA preflight通过为READY_TO_TRAIN（仍需用户开训授权）；真实执行running→failed/interrupted或completed。P3正式PASS需五成员封存、全部对账、原输入未变与双独立交叉验收，不由指标好坏决定；P3结束停止，P4评价协议及OOS解封另审另批。本轮不把未实现检查写成PASS。
+
+
+P3双审精化（2026-09-18）：commit marker须绑定文件SHA/长度、parent commit hash、epoch、run/member、输入/代码摘要，完整链连续验证；marker最后原子写入，作为提交权威。best指针仅为可重建缓存，若提交后指针更新失败，用已提交history确定性重建，不重算选优/回滚。Windows原子rename不等于断电持久性；文件flush/fsync、故障注入须在生产preflight验证并记录能力，重启后所有hash验证，不能声称已证明物理断电不丢数据。写入前预留完整epoch及最终封存空间；实际序列化体积在合成阶段核验，不足8GiB则BLOCKED，不减少快照凑预算。
+
+恢复预算以持续追加的外部监督账本为权威，checkpoint内账本只是当时快照，禁止恢复时覆盖/回退已耗时资源。probe一律eval/no_grad并保存/恢复全部RNG；CPU/CUDA同设备连续与恢复均须证明probe不影响后续轨迹。固定生产preflight输入为人工二值I20 Train256/Validation128，按冻结batch128和真实PaperCNN/Adam执行3个epoch，对照在epoch1完整提交后中断恢复；不可用另一个toy trainer代替。中途/损坏/预算等故障注入共用预检预算，失败记录不清零；本轮不执行该fixture。
+
+冻结配置中的training_authorized=false与preflight_status=NOT_RUN描述冻结时状态，未来授权/实际preflight结果写独立hash绑定receipt，不修改冻结配置来开启训练。资源/实现审定、用户明确开训确认都齐备才可真实执行；目前只有协议制定获批。
