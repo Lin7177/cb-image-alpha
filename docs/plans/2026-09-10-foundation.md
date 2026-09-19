@@ -508,3 +508,10 @@ P4 工程复审又发现 inventory 含 38 个数据成员及 38 个 macOS 元数
 ### P4 执行阻断（2026-09-19）
 
 P4 一次性 OOS 读取/推理已结束并保留结果，但 **BLOCKED**：结果记录总耗时7992.609秒，超过冻结总墙钟7200秒，且本次入口未由协议要求的资源监督器包裹。未重试、未调参、未重训、未回测；结果仅作为失败诊断证据，不进行最终PASS审计。OOS读取已发生，不能再作为未见测试集；endpoint_verified=false、strict_leakage_free_claim=false保持。需用户另行裁决是否制定新协议/预算，当前不进入P5。
+
+
+### P4 BLOCKED 诊断里程碑（2026-09-19）
+
+双 Agent 独立审计与交叉质疑完成，结论一致：P4 仍 BLOCKED。只读产物显示 OOS 仅读取一次，5 个成员及共同集均为1,387,781行，五组预测概率有限、ID唯一且指标/逐年排除账本齐全；但这只是未验收中间诊断。冻结总墙钟7200秒，实际7992.609秒（超792.609秒），且运行没有协议要求的supervisor/资源账本，final audit未运行。`results.json` 的 COMPLETED_AWAITING_AUDIT 与 `blocked.json` 冲突，以后者为权威。不得重读OOS、重跑、调参、重训或回测。
+
+P5不自动启动。若继续，首个P5只能是不读取OOS的状态冲突与产物哈希/分母对账决策门；必须保留OOS已读一次、endpoint_verified=false、strict_leakage_free_claim=false。任何新的OOS评估都需要用户明确批准的新协议和预算；否则建议关闭当前评价轴。诊断receipt见artifacts/paper-v1/p4-oos-evaluation-v1/p4-diagnostic.json。
