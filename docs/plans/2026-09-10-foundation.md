@@ -552,3 +552,12 @@ R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Pa
 ### P4R1 执行阻断（2026-09-19）
 
 新 run `p4-reval-20260919-r1` 按冻结协议启动后立即在输入门禁失败：worker 读取不到预期顶层 `inventory_sha256`（TOML 字段作用域错误）。监督器记录约3秒失败；OOS未读取、无训练/重评输出。按一次性运行和失败即BLOCKED规则，不自动修复或重试。P4R1状态BLOCKED，旧P4 BLOCKED/人工豁免保持不变。
+
+
+### P4R1 v1.1 已见 OOS 重评封存（2026-09-19）
+
+`p4-reval-20260919-r2` 在读取任何 OOS payload 前因中央目录白名单实现错误 BLOCKED；证据与 `automatic_retry=false` 保留。经双 Agent 重新审计后，将仅修正 archive boundary 的 `paper-p4-reval-v1.1` 绑定到新 run `p4-reval-20260919-r3`：38 个 OOS data + 38 个 OOS metadata 仍逐项 hash/size/CRC 校验，其他 36 个固定包成员只计数/取名 hash、不解压读取。
+
+`r3` 监督运行与最终双审 **PASS_WITH_TRACEABILITY_CORRECTION**：19 年 raw 1,403,975 行，保留 1,387,781，排除 16,194；五成员 sample_id/label 完全一致且无缺重，预测概率有限，封存文件摘要与 supervisor ledger 对账通过。耗时 473.531 秒，峰值 RSS 2,317,684,736 bytes，产物 36,515,180 bytes，未训练、未调参、未回测。五成员与 ensemble 指标见 `artifacts/paper-v1/p4-reval-20260919-r3/results.json`。授权回执中的 ignored-name hash 曾因转义写法产生 `1132…`，worker 与独立复算的实际值为 `fcbed…`；该差异已以 append-only erratum 记录，不影响 OOS allowlist、预测文件或指标。
+
+该结果仅是**已见 OOS 的 paper-faithful 重评**：`test_qualification=none`、`endpoint_verified=false`、`strict_leakage_free_claim=false`，不恢复未见测试资格，也不覆盖旧 P4 BLOCKED/人工豁免结论。当前任务在重评完成后停止，不进入下一阶段。证据：`artifacts/paper-v1/p4-reval-20260919-r3-final-audit.json`。

@@ -44,3 +44,12 @@
 ## 人工裁决后的 P4 状态（2026-09-19）
 
 用户明确裁决预算超时合理并同意正式接受 P4。故新增状态 `P4_PASS_WITH_HUMAN_WAIVER`：一次 OOS 评估结果可作为正式的描述性评估结果封存，但原始 `BLOCKED`、7992.609 秒、超预算 792.609 秒和 supervisor 缺失事实保持不变。该人工豁免不等于技术上通过冻结的7,200秒/监督器门禁，也不证明 endpoint、严格无泄漏或预测有效性。
+
+
+## 后续授权的 P4R1 v1.1 重评（2026-09-19）
+
+在保留上述旧 P4 BLOCKED/人工豁免事实后，用户批准了独立新 run。`p4-reval-20260919-r2` 在 OOS payload 解码前因 archive boundary 实现错误 BLOCKED；`p4-reval-20260919-r3` 使用经双 Agent 审计的 `paper-p4-reval-v1.1` 完成一次监督重评。r3 读取的是已见 2001–2019 OOS，因此不恢复未见测试资格。
+
+最终审计 PASS（附追踪修正）：raw 1,403,975，保留 1,387,781，排除 16,194；五成员 sample_id/label 一致、概率有限、NPZ/seal/ledger 对账通过。监督耗时 473.531 秒，峰值 RSS 2.32 GB，产物 36.5 MB。ensemble 指标为 cross-entropy 0.690258、ROC AUC 0.537224、balanced accuracy 0.526627、accuracy 0.532823、Brier 0.248557。该结果仍是 paper-faithful 的已见 OOS 描述性重评，不是严格无泄漏确认性结果；`endpoint_verified=false`、`strict_leakage_free_claim=false`、`test_qualification=none`。授权回执中 ignored-member hash 的转义错误通过 append-only audit erratum 记录，未改变 run 输出或结论。
+
+证据入口：`artifacts/paper-v1/p4-reval-20260919-r3/`、`artifacts/paper-v1/p4-reval-20260919-r3-final-audit.json`。本阶段完成后停止，不进入下一阶段。
