@@ -49,3 +49,10 @@ run_once = true
 failure = "BLOCKED_no_retry"
 final_acceptance = "dual independent then cross audit"
 next_stage = "none"
+
+archive_manifest_sha256 = "796562389e6e703bcb5972da6abab8501ca735bf54e1d3eb65005050f8c0c109"
+inventory_sha256 = "531017292abba4ad1c8b66d66281b59bfbdc2cfa565e8400b9086164f1698788"
+p4_protocol_sha256 = "677e9b1bf0bf8f2f71b1ee9785e5700feb54a7d3853ac5807ebdbcce7dcf7264"
+p3_audit_sha256 = "bc7a999de27fd8d75d2c5cd346018bee1634817b5c30ac6bb85a1c3cdd8af162"
+model_source_sha256 = "a6ffd94533aefb56e6aaa6e89822f6b3171931c5fce8b6ccaae499a1525426db"
+environment_lock_sha256 = "293fe87ccee630cbbfbea25c174db531e3d9eb2785d43f10228d8fb756c56796"
