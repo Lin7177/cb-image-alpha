@@ -522,3 +522,8 @@ P5不自动启动。若继续，首个P5只能是不读取OOS的状态冲突与�
 P5 仅只读核验 P4 阻断。双 Agent 独立审计与交叉质疑无实质分歧：五个预测文件各1,387,781行，ID/标签对账、有限概率、指标存在性和文件摘要核验通过；但P4耗时7992.609秒超7200秒，未使用要求的supervisor/资源ledger，最终审计未运行。`blocked.json`为权威状态，`results.json`的COMPLETED_AWAITING_AUDIT仅表示结果文件写出。
 
 现有P4指标只能封存为“未验收、受限描述性诊断证据”，不能作为P4 PASS或确认性预测结论。OOS已读取一次，P5不值得自动提出新的重评协议；重评需再次读取OOS并违反原一次性边界，除非用户明确批准重大新协议/预算。当前建议关闭评价轴，P5完成后停止，不进入P6。决策receipt见artifacts/paper-v1/p4-oos-evaluation-v1/p5-decision.json。
+
+
+### G0–P5 最终封存（2026-09-19）
+
+当前 OOS 评价轴已关闭。最终研究总结见 `docs/final-research-summary.md`，证据索引见 `artifacts/paper-v1/final-evidence-index.json`。双 Agent 审阅确认：基本工程/方法流程与P3训练封存完成；P4因7992.609秒超7200秒且无supervisor/ledger而BLOCKED；P4指标只能作为未验收描述性诊断；endpoint未验证、严格无泄漏未成立。P5只读决策门完成，未重读OOS、未重跑、未重训、未调参、未回测。不得进入P6或自动重评。
