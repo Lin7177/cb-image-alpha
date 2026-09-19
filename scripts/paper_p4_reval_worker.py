@@ -55,7 +55,12 @@ def main():
             x = infos.get(name)
             if x is None or x.file_size != item["bytes"] or f"{x.CRC:08x}" != item["crc32"]:
                 raise RuntimeError("member inventory mismatch")
-        seal = json.loads((ROOT / "artifacts/paper-v1/p3-paper-training-v1/seal/manifest.json").read_text())
+        seal_path = ROOT / "artifacts/paper-v1/p3-paper-training-v1/seal/manifest.json"
+        seal = json.loads(seal_path.read_text())
+        if (seal.get("status") != "PASS" or seal.get("final_audit_sha256") != cfg["p3_audit_sha256"]
+                or {m.get("member") for m in seal.get("members", [])} != set(range(5))
+                or any(m.get("status") != "passed" for m in seal.get("members", []))):
+            raise RuntimeError("P3 seal manifest gate")
         for member in seal["members"]:
             for name, expected_hash in member["files"].items():
                 path = ROOT / "artifacts/paper-v1/p3-paper-training-v1/seal" / f"member-{member['member']}" / name
