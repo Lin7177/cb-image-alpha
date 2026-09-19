@@ -61,7 +61,10 @@ def main():
                 or {m.get("member") for m in seal.get("members", [])} != set(range(5))
                 or any(m.get("status") != "passed" for m in seal.get("members", []))):
             raise RuntimeError("P3 seal manifest gate")
+        expected_seal_files = {"COMMIT.json", "normalization.json", "predictions.pt", "state.pt"}
         for member in seal["members"]:
+            if set(member.get("files", {})) != expected_seal_files:
+                raise RuntimeError("P3 seal file set mismatch")
             for name, expected_hash in member["files"].items():
                 path = ROOT / "artifacts/paper-v1/p3-paper-training-v1/seal" / f"member-{member['member']}" / name
                 if sha(path) != expected_hash:
