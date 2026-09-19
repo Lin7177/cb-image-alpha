@@ -503,3 +503,8 @@ P4 工程复审又发现 inventory 含 38 个数据成员及 38 个 macOS 元数
 ### P4 协议冻结（2026-09-18）
 
 `paper-p4-evaluation-v1` 已由研究/工程 Agent 独立复审并交叉确认 FROZEN，配置与 `artifacts/paper-v1/p4-protocol-freeze.json` 绑定。精确允许 38 个真实 OOS 数据成员（19 年×图像/标签），38 个 macOS metadata 成员拒绝；archive、inventory、P3 audit/seal 摘要及资源监督口径已绑定。当前尚未读取 OOS 内容，`execution_authorized=false`；endpoint 仍未验证且不得宣称严格无泄漏。下一步才是一次性执行、封存和最终双审，异常即 BLOCKED，不进入 P5。
+
+
+### P4 执行阻断（2026-09-19）
+
+P4 一次性 OOS 读取/推理已结束并保留结果，但 **BLOCKED**：结果记录总耗时7992.609秒，超过冻结总墙钟7200秒，且本次入口未由协议要求的资源监督器包裹。未重试、未调参、未重训、未回测；结果仅作为失败诊断证据，不进行最终PASS审计。OOS读取已发生，不能再作为未见测试集；endpoint_verified=false、strict_leakage_free_claim=false保持。需用户另行裁决是否制定新协议/预算，当前不进入P5。
