@@ -561,3 +561,14 @@ R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Pa
 `r3` 监督运行与最终双审 **PASS_WITH_TRACEABILITY_CORRECTION**：19 年 raw 1,403,975 行，保留 1,387,781，排除 16,194；五成员 sample_id/label 完全一致且无缺重，预测概率有限，封存文件摘要与 supervisor ledger 对账通过。耗时 473.531 秒，峰值 RSS 2,317,684,736 bytes，产物 36,515,180 bytes，未训练、未调参、未回测。五成员与 ensemble 指标见 `artifacts/paper-v1/p4-reval-20260919-r3/results.json`。授权回执中的 ignored-name hash 曾因转义写法产生 `1132…`，worker 与独立复算的实际值为 `fcbed…`；该差异已以 append-only erratum 记录，不影响 OOS allowlist、预测文件或指标。
 
 该结果仅是**已见 OOS 的 paper-faithful 重评**：`test_qualification=none`、`endpoint_verified=false`、`strict_leakage_free_claim=false`，不恢复未见测试资格，也不覆盖旧 P4 BLOCKED/人工豁免结论。当前任务在重评完成后停止，不进入下一阶段。证据：`artifacts/paper-v1/p4-reval-20260919-r3-final-audit.json`。
+
+
+### R2 论文复现继续推进：I20/R20 分析层（2026-09-19）
+
+用户明确要求在“作者数据基本可信”的假设下继续逼近原论文，不因 endpoint 限制把论文复现线停在单一 OOS 指标。只读范围审计确认：官方九组是 I{5,20,60}×R{5,20,60}；当前公开 ZIP 只含 `monthly_20d`，对应 I20/R20，缺少 I5/I60 所需的 weekly/quarterly image members。现阶段不能用月末 I20 图像加 `Ret_5d/Ret_60d` 冒称官方其他 I/R。
+
+已完成的新分析产物：基于封存 `p4-reval-20260919-r3` 概率，独立实现官方风格 pooled `loss/accy/diff/MCC`、按 Date accuracy/Spearman/Pearson、10 分位 EW/VW、H-L 和 top/bottom turnover。共 1,387,781 行、227 个日期、226 次 turnover transition，六个信号（五成员+ensemble）均通过文件摘要、行数、ID/标签和有限值检查。ensemble 的按日期 accuracy 0.532810、Spearman 0.052552、Pearson 0.030278；EW H-L 年化 Sharpe 1.9933，VW H-L 年化 Sharpe 0.3159，平均 turnover 分别 1.7426/1.8189。
+
+组合收益使用标签文件 `Ret_month` 作为 proxy；作者 `next_month_ret` sidecar 不在当前仓库，因此状态为 `PASS_WITH_SCOPE_LIMITATION`，不称作者原始组合结果逐字节复现，不恢复测试资格，不改变 endpoint/leakage 限制。产物入口：`artifacts/paper-v1/p4-reval-20260919-r3/portfolio-i20-r20/analysis_final_audit.json`。
+
+后续继续顺序：先整理 I20/R20 的 Table 2–4 风格输出和差异说明；I5/I60 及其余七组标为数据依赖阻断，需取得对应官方图像或原始日频数据后再开新协议；Table 5–12、国际迁移、Linear/CNN1D 对照暂不伪造完成。该状态是“继续复现中的可得范围”，不是关闭论文复现线。

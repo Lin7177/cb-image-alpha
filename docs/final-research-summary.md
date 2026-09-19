@@ -53,3 +53,8 @@
 最终审计 PASS（附追踪修正）：raw 1,403,975，保留 1,387,781，排除 16,194；五成员 sample_id/label 一致、概率有限、NPZ/seal/ledger 对账通过。监督耗时 473.531 秒，峰值 RSS 2.32 GB，产物 36.5 MB。ensemble 指标为 cross-entropy 0.690258、ROC AUC 0.537224、balanced accuracy 0.526627、accuracy 0.532823、Brier 0.248557。该结果仍是 paper-faithful 的已见 OOS 描述性重评，不是严格无泄漏确认性结果；`endpoint_verified=false`、`strict_leakage_free_claim=false`、`test_qualification=none`。授权回执中 ignored-member hash 的转义错误通过 append-only audit erratum 记录，未改变 run 输出或结论。
 
 证据入口：`artifacts/paper-v1/p4-reval-20260919-r3/`、`artifacts/paper-v1/p4-reval-20260919-r3-final-audit.json`。本阶段完成后停止，不进入下一阶段。
+
+
+## 论文复现继续推进：I20/R20 分析层
+
+在用户明确要求继续逼近原论文后，已基于 r3 封存概率补齐官方风格的 pooled 指标、按日期指标、十等分 EW/VW、H-L 和 turnover。该分析未训练、未调参、未改变样本。它使用 `Ret_month` 标签作为组合 return proxy；作者 `next_month_ret` sidecar 不在当前仓库，因此结果属于受限 paper-style 分析。I5/I60 及其余七组仍因缺少对应 weekly/quarterly 图像而阻断，论文复现线继续推进，不再把 I20/R20 视为终点。

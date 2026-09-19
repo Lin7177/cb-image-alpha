@@ -1,16 +1,16 @@
-# cb-image-alpha
+# cb-image-alpha — paper replication branch
 
-中国可转债日频 OHLCV → I20 价格图像 → CNN → R5 收益方向预测的可复现研究实现。
+原论文美国股票实验的独立复现分支：官方图像/标签 → PaperCNN → 五成员训练 → OOS 指标与组合分析。中国可转债迁移版本保留在 `main`；本分支不把 CB 结果混入论文复现。
 
-**G0–G8 技术流程与开发比较已完成。预测有效性尚未得到支持。** 这是论文技术路线的转债迁移版本，不是原论文美股实验的完整复现。后续论文复现将使用独立分支，保留本版本及其负结果。
+当前已完成官方公开包可得的 I20/R20 核心链。I5/I60 及其对应 weekly/quarterly 图像不在当前公开图像包中；组合分析已补齐为可审计的 Ret_month proxy 版本，并明确记录与作者 `next_month_ret` sidecar 的差异。严格 endpoint/leakage 结论仍未成立。
 
 ## 已有结果
 
-- G5 首次 Final Test：AUC **0.498393**，log loss **0.714288**，差于训练常量概率基线 **0.696069**。Test 已查看，不再作为未见测试集。
-- G8 三折时间顺序开发比较：Constant / U Logistic / Q Logistic / 原 CNN。U/Q 的主指标仅两折改善；量化差异小且方向混合；CNN 三折 log loss 均差于 Q。配对描述区间均跨零，不据此宣称 CV 无效。
-- G9 未执行；建议停止当前 CNN 优化轴。
+- P3 五成员 I20/R20 训练已封存，使用官方公开图像/标签包和固定开发区间；checkpoint、恢复 probe、预测及资源账本均有本机证据。
+- P4/r3 已完成一次受监督的已见 OOS 描述性重评：19 年、1,387,781 个保留样本；ensemble ROC AUC **0.537224**、accuracy **0.532823**、cross-entropy **0.690258**。这不是严格无泄漏确认性结果，endpoint_verified=false，也不恢复未见测试资格。
+- I20/R20 的论文风格 pooled/按日期指标、10 分位 EW/VW、H-L 和 turnover 已补齐；收益使用 Ret_month proxy。其余八组配置因公开包缺少对应 image members 而数据阻断，不能用同一月频图像替代。
 
-[可公开结果与来源摘要](reports/cb-v1/results.json)包含完整聚合指标，不含行级价格、标签、预测或私人目录。[架构文档](docs/architecture.md)解释比较方法及证据局限。
+论文分支的运行证据位于本机 artifacts/paper-v1/（不提交）；配置覆盖清单见 artifacts/paper-v1/paper-scope-audit.json。转债迁移结果仍保留在 main 的 reports/cb-v1/，不与本分支结论混用。
 
 ## 从干净克隆开始
 
