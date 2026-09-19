@@ -58,3 +58,7 @@
 ## 论文复现继续推进：I20/R20 分析层
 
 在用户明确要求继续逼近原论文后，已基于 r3 封存概率补齐官方风格的 pooled 指标、按日期指标、十等分 EW/VW、H-L 和 turnover。该分析未训练、未调参、未改变样本。它使用 `Ret_month` 标签作为组合 return proxy；作者 `next_month_ret` sidecar 不在当前仓库，因此结果属于受限 paper-style 分析。I5/I60 及其余七组仍因缺少对应 weekly/quarterly 图像而阻断，论文复现线继续推进，不再把 I20/R20 视为终点。
+
+### 官方 CACHE_DIR 覆盖审计（2026-09-19）
+
+只读扫描 Reference_repository/jofi13268-sup-0002-replicationcode/trend_submit/CACHE_DIR.zip 的现有压缩成员，得到 108 个模型组合缓存，覆盖九组 I/R、CNN1D/Linear、ret/image/vol 三类信号和 EW/VW 两种组合权重。官方 README 同时明确 CACHE_DIR 每个文件只保留首 50 行和末 50 行，因此这些缓存只能用于命名、字段和组合公式的 sanity check，不能替代完整样本重跑，也不能补齐缺失的官方图像。机器证据：artifacts/paper-v1/paper-cache-audit.json，其中 full_reproduction_input=false。I20/R20 仍是当前唯一拥有可重建图像与完整概率链的配置。

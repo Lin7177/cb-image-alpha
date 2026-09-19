@@ -572,3 +572,7 @@ R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Pa
 组合收益使用标签文件 `Ret_month` 作为 proxy；作者 `next_month_ret` sidecar 不在当前仓库，因此状态为 `PASS_WITH_SCOPE_LIMITATION`，不称作者原始组合结果逐字节复现，不恢复测试资格，不改变 endpoint/leakage 限制。产物入口：`artifacts/paper-v1/p4-reval-20260919-r3/portfolio-i20-r20/analysis_final_audit.json`。
 
 后续继续顺序：先整理 I20/R20 的 Table 2–4 风格输出和差异说明；I5/I60 及其余七组标为数据依赖阻断，需取得对应官方图像或原始日频数据后再开新协议；Table 5–12、国际迁移、Linear/CNN1D 对照暂不伪造完成。该状态是“继续复现中的可得范围”，不是关闭论文复现线。
+
+### 官方 CACHE_DIR 覆盖审计（2026-09-19）
+
+只读扫描 Reference_repository/jofi13268-sup-0002-replicationcode/trend_submit/CACHE_DIR.zip 的现有压缩成员，得到 108 个模型组合缓存，覆盖九组 I/R、CNN1D/Linear、ret/image/vol 三类信号和 EW/VW 两种组合权重。官方 README 同时明确 CACHE_DIR 每个文件只保留首 50 行和末 50 行，因此这些缓存只能用于命名、字段和组合公式的 sanity check，不能替代完整样本重跑，也不能补齐缺失的官方图像。机器证据：artifacts/paper-v1/paper-cache-audit.json，其中 full_reproduction_input=false。I20/R20 仍是当前唯一拥有可重建图像与完整概率链的配置。
