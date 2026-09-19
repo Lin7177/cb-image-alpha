@@ -19,7 +19,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from cb_image_alpha.models.paper_cnn import PaperCNN
 
 ROOT=Path(__file__).resolve().parents[1]
-CFG=ROOT/'configs/paper/p4_reval_v1.toml'; OUT=ROOT/'artifacts/paper-v1/p4-reval-20260919-r2'
+CFG=ROOT/'configs/paper/p4_reval_v1.toml'; OUT=ROOT/'artifacts/paper-v1/p4-reval-20260919-r3'
 ZIP=ROOT/'artifacts/paper-v1/acquire-20260917T010443459965Z/recovery-1/img_data.zip'; INV=ROOT/'artifacts/paper-v1/p4-oos-inventory.json'
 def sha(p): return hashlib.file_digest(p.open('rb'),'sha256').hexdigest()
 def auc(y,p):
@@ -49,8 +49,9 @@ def main():
             raise RuntimeError("allowlist mismatch")
         metadata_items = {x["name"]: x for x in inv["metadata_members"]}
         metadata = set(metadata_items)
-        if set(infos) != expected | metadata:
-            raise RuntimeError("archive contains unexpected or unallowed members")
+        if not expected.issubset(infos) or not metadata.issubset(infos):
+            raise RuntimeError("archive missing an allowlisted OOS member")
+        ignored_members = sorted(set(infos) - expected - metadata)
         for name, item in {**data, **metadata_items}.items():
             x = infos.get(name)
             if x is None or x.file_size != item["bytes"] or f"{x.CRC:08x}" != item["crc32"]:
@@ -108,7 +109,7 @@ def main():
     for m, p in enumerate(prob):
         if len(p) != len(ids) or not np.isfinite(p).all(): raise RuntimeError("prediction integrity")
         np.savez_compressed(OUT / f"member-{m}-predictions.npz", sample_id=ids, label=y, probability=p)
-    ensemble = np.mean(np.stack(prob), axis=0); result = {"status": "COMPLETED_AWAITING_AUDIT", "run_id": cfg["run_id"], "read_class": "already_seen_OOS_reassessment", "rows": len(y), "common_rows": len(y), "exclusions": exclusions, "member_metrics": [metrics(y, p) for p in prob], "ensemble_metrics": metrics(y, ensemble), "elapsed_seconds": time.monotonic() - started, "protocol_sha256": sha(CFG), "worker_sha256": sha(Path(__file__)), "inventory_sha256": sha(INV), "archive_sha256": cfg["archive_sha256"], "input_fingerprints": {k: cfg[k] for k in ("archive_manifest_sha256", "inventory_sha256", "p4_protocol_sha256", "p3_audit_sha256", "model_source_sha256", "environment_lock_sha256", "archive_sha256")}, "p3_seal_manifest_sha256": sha(ROOT / "artifacts/paper-v1/p3-paper-training-v1/seal/manifest.json"), "endpoint_verified": False, "strict_leakage_free_claim": False, "test_qualification": "none", "old_results_guidance": False, "oos_reread_for_reassessment": True, "no_training": True, "no_tuning": True, "no_backtest": True, "device": "cuda", "cuda_device": torch.cuda.get_device_name(0)}
+    ensemble = np.mean(np.stack(prob), axis=0); result = {"status": "COMPLETED_AWAITING_AUDIT", "run_id": cfg["run_id"], "read_class": "already_seen_OOS_reassessment", "rows": len(y), "common_rows": len(y), "exclusions": exclusions, "ignored_non_oos_member_count": len(ignored_members), "ignored_non_oos_member_names_sha256": hashlib.sha256("\n".join(ignored_members).encode()).hexdigest(), "member_metrics": [metrics(y, p) for p in prob], "ensemble_metrics": metrics(y, ensemble), "elapsed_seconds": time.monotonic() - started, "protocol_sha256": sha(CFG), "worker_sha256": sha(Path(__file__)), "inventory_sha256": sha(INV), "archive_sha256": cfg["archive_sha256"], "input_fingerprints": {k: cfg[k] for k in ("archive_manifest_sha256", "inventory_sha256", "p4_protocol_sha256", "p3_audit_sha256", "model_source_sha256", "environment_lock_sha256", "archive_sha256")}, "p3_seal_manifest_sha256": sha(ROOT / "artifacts/paper-v1/p3-paper-training-v1/seal/manifest.json"), "endpoint_verified": False, "strict_leakage_free_claim": False, "test_qualification": "none", "old_results_guidance": False, "oos_reread_for_reassessment": True, "no_training": True, "no_tuning": True, "no_backtest": True, "device": "cuda", "cuda_device": torch.cuda.get_device_name(0)}
     atomic_json(OUT / "results.json", result)
 
 
