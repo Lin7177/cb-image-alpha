@@ -30,7 +30,20 @@ def metrics(y,p):
  return {'rows':len(y),'cross_entropy':float(-np.mean(y*np.log(np.clip(p,1e-7,1-1e-7))+(1-y)*np.log(np.clip(1-p,1e-7,1-1e-7)))),'roc_auc':auc(y,p),'accuracy':float((pred==y).mean()),'balanced_accuracy':float(((tp/(tp+fn)) if tp+fn else 0)+((tn/(tn+fp)) if tn+fp else 0))/2,'brier':float(np.mean((p-y)**2))}
 def main():
  cfg=tomllib.loads(CFG.read_text()); inv=json.loads(INV.read_text())
- if cfg['status']!='IN_REVIEW' or sha(INV)!=cfg['oos_inventory_sha256'] or inv['data_member_count']!=38: raise RuntimeError('reval input gate')
+ if cfg['status']!='FROZEN' or sha(INV)!=cfg['inventory_sha256'] or inv['data_member_count']!=38 or inv['metadata_member_count']!=38:
+  raise RuntimeError('reval input gate')
+if sha(ROOT/cfg['archive_manifest']) != cfg['archive_manifest_sha256'] or sha(ROOT/cfg['p4_protocol']) != cfg['p4_protocol_sha256'] or sha(ROOT/cfg['p3_audit']) != cfg['p3_audit_sha256'] or sha(ROOT/'src/cb_image_alpha/models/paper_cnn.py') != cfg['model_source_sha256'] or sha(ROOT/'uv.lock') != cfg['environment_lock_sha256']:
+  raise RuntimeError('bound input/code hash mismatch')
+if inv['archive_sha256'] != cfg['archive_sha256']:
+  raise RuntimeError('archive hash mismatch')
+expected={f'monthly_20d/20d_month_has_vb_[20]_ma_{y}_{suffix}' for y in range(2001,2020) for suffix in ('images.dat','labels_w_delay.feather')}
+if {x['name'] for x in inv['data_members']} != expected or any(x['name'].startswith('__MACOSX/') for x in inv['data_members']):
+  raise RuntimeError('exact OOS allowlist mismatch')
+seal=json.loads((ROOT/'artifacts/paper-v1/p3-paper-training-v1/seal/manifest.json').read_text())
+for item in seal['members']:
+ for name, expected_hash in item['files'].items():
+  path=ROOT/'artifacts/paper-v1/p3-paper-training-v1/seal'/f"member-{item['member']}"/name
+  if sha(path)!=expected_hash: raise RuntimeError('sealed model hash mismatch')
  if not torch.cuda.is_available(): raise RuntimeError('CUDA required for performance rebuild')
  torch.set_num_threads(cfg['resources']['cpu_threads']); torch.cuda.set_per_process_memory_fraction(cfg['resources']['cuda_reserved_limit_bytes']/torch.cuda.get_device_properties(0).total_memory)
  OUT.mkdir(exist_ok=False); start=time.monotonic(); z=zipfile.ZipFile(ZIP); ids_parts=[]; y_parts=[]; preds=[[] for _ in range(5)]; exclusions=[]
