@@ -45,8 +45,11 @@ def main():
     expected = {f"monthly_20d/20d_month_has_vb_[20]_ma_{y}_{s}" for y in range(2001, 2020) for s in ("images.dat", "labels_w_delay.feather")}
     with zipfile.ZipFile(ZIP) as z:
         infos = {x.filename: x for x in z.infolist()}; data = {x["name"]: x for x in inv["data_members"]}
-        if set(data) != expected:
+        if set(data) != expected or len(inv["metadata_members"]) != 38:
             raise RuntimeError("allowlist mismatch")
+        metadata = {x["name"] for x in inv["metadata_members"]}
+        if set(infos) != expected | metadata:
+            raise RuntimeError("archive contains unexpected or unallowed members")
         for name, item in data.items():
             x = infos.get(name)
             if x is None or x.file_size != item["bytes"] or f"{x.CRC:08x}" != item["crc32"]:

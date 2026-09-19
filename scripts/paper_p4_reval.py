@@ -20,4 +20,12 @@ if __name__=="__main__":
  OUT.mkdir(); (OUT/"binding.json").write_text(json.dumps({"run_id":cfg["run_id"],"protocol_sha256":sha(CFG),"worker_sha256":sha(WORKER),"oos_seen":True},indent=2),encoding="utf-8")
  os.environ["P4_REVAL_OUTPUT"]=str(OUT)
  result=supervise([sys.executable,str(WORKER)],OUT/"supervision",OUT,cfg["resources"]["total_wall_seconds"],rss_limit=cfg["resources"]["rss_tree_limit_bytes"],disk_limit=cfg["resources"]["artifact_limit_bytes"])
- if result["status"]!="passed": raise SystemExit(1)
+ if result["status"]!="passed" or not (OUT/"results.json").exists(): raise SystemExit(1)
+ ledger=json.loads((OUT/"supervision"/"ledger.jsonl").read_text().splitlines()[-1])
+ if ledger.get("event")!="finished" or ledger.get("status")!="passed": raise SystemExit(1)
+ files=[]
+ for path in sorted(OUT.glob("member-*-predictions.npz")):
+  files.append({"path":path.name,"bytes":path.stat().st_size,"sha256":sha(path)})
+ files.append({"path":"results.json","bytes":(OUT/"results.json").stat().st_size,"sha256":sha(OUT/"results.json")})
+ (OUT/"seal.json.tmp").write_text(json.dumps({"status":"SEALED_AWAITING_AUDIT","run_id":cfg["run_id"],"protocol_sha256":sha(CFG),"worker_sha256":sha(WORKER),"supervision":result,"files":files,"test_qualification":"none","oos_seen":True},indent=2),encoding="utf-8")
+ os.replace(OUT/"seal.json.tmp",OUT/"seal.json")
