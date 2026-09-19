@@ -1,5 +1,5 @@
 protocol = "paper-p4-reval-v1"
-status = "IN_REVIEW"
+status = "FROZEN"
 run_id = "p4-reval-20260919-r1"
 parent_protocol = "paper-p4-evaluation-v1"
 read_class = "already_seen_OOS_reassessment"
