@@ -35,3 +35,7 @@ P4 的 7,200 秒墙钟、未实现的 supervisor、当次 8 GiB/磁盘预算和 
 ## 研究风险
 
 旧 P4 指标已被观察，任何基于其选模型、挑年份或改阈值都会产生选择污染；Date proxy 的跨 OOS 风险仍未消除；新数据若权限或期间边界不清，只能作 development evidence；P4 工作树中的 `scripts/paper_p4_evaluate.py` 未提交，不能作为正式可复现实现。新协议和预算必须说明这些影响，不得把历史失败改写为成功。
+
+## R2 audit outcome (2026-09-19)
+
+R2 completed as `PASS_AUDIT_STOP`: no old OOS content was reopened, and no training or experiment ran. No new endpoint sidecar, legal source, or independent unseen interval is present. R3 is not authorized. Author contact or licensed data acquisition requires a separate user decision.

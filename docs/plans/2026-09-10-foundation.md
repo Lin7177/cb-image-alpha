@@ -531,3 +531,10 @@ P5 仅只读核验 P4 阻断。双 Agent 独立审计与交叉质疑无实质分
 ### 研究路线重评（research-v3，2026-09-19，DRAFT/等待确认）
 
 依据 G0–P5 封存证据，重新区分研究性约束与历史 P4 执行预算。继续保留 endpoint 可追溯、无未来信息、开发/未见边界、一次性评估、固定模型/标签/指标、双审和监督账本；P4 的7200秒、当次监督缺失、资源上限和run_id只解释历史 BLOCKED，不事后修改。推荐路线为 R1 证据关闭（已完成）→ R2 低成本端点/新未见数据可行性审计（零训练，待用户确认）→ R3 新协议桥接评估（仅R2 PASS且重新双审/用户批准）→ R4 差异归档。没有真实endpoint或新未见区间就停止，不重读旧OOS、不用旧点估计选模型、不以收益回测替代。详情见 `docs/research-v3-route.md`。当前状态DRAFT，未启动R2，等待用户确认。
+
+
+### research-v3 R2 可行性审计（2026-09-19）
+
+R2 零训练、零旧OOS重读完成，双 Agent 独立审计与交叉质疑无实质分歧。已证实：仓库没有新的research-v3 inventory、endpoint sidecar、授权receipt或独立未见区间；官方公开包/README/cache只能支持受限Date proxy，不能可靠重建每行Ret_month真实start/end；P4的2001–2019永久视为已见。候选作者sidecar、同源期间末序列、合法CRSP日数据均当前不可得；同一公开archive未读成员不构成新的独立最终测试。
+
+R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Paper-faithful只能保持受限描述性证据，leakage-controlled需要新endpoint和新未见区间。作者询证/外部联系或申请授权需用户另行明确批准；否则关闭预测评价轴。receipt见`artifacts/paper-v1/research-v3-r2-audit.json`。
