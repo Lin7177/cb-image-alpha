@@ -515,3 +515,10 @@ P4 一次性 OOS 读取/推理已结束并保留结果，但 **BLOCKED**：结�
 双 Agent 独立审计与交叉质疑完成，结论一致：P4 仍 BLOCKED。只读产物显示 OOS 仅读取一次，5 个成员及共同集均为1,387,781行，五组预测概率有限、ID唯一且指标/逐年排除账本齐全；但这只是未验收中间诊断。冻结总墙钟7200秒，实际7992.609秒（超792.609秒），且运行没有协议要求的supervisor/资源账本，final audit未运行。`results.json` 的 COMPLETED_AWAITING_AUDIT 与 `blocked.json` 冲突，以后者为权威。不得重读OOS、重跑、调参、重训或回测。
 
 P5不自动启动。若继续，首个P5只能是不读取OOS的状态冲突与产物哈希/分母对账决策门；必须保留OOS已读一次、endpoint_verified=false、strict_leakage_free_claim=false。任何新的OOS评估都需要用户明确批准的新协议和预算；否则建议关闭当前评价轴。诊断receipt见artifacts/paper-v1/p4-oos-evaluation-v1/p4-diagnostic.json。
+
+
+### P5 决策门（2026-09-19）
+
+P5 仅只读核验 P4 阻断。双 Agent 独立审计与交叉质疑无实质分歧：五个预测文件各1,387,781行，ID/标签对账、有限概率、指标存在性和文件摘要核验通过；但P4耗时7992.609秒超7200秒，未使用要求的supervisor/资源ledger，最终审计未运行。`blocked.json`为权威状态，`results.json`的COMPLETED_AWAITING_AUDIT仅表示结果文件写出。
+
+现有P4指标只能封存为“未验收、受限描述性诊断证据”，不能作为P4 PASS或确认性预测结论。OOS已读取一次，P5不值得自动提出新的重评协议；重评需再次读取OOS并违反原一次性边界，除非用户明确批准重大新协议/预算。当前建议关闭评价轴，P5完成后停止，不进入P6。决策receipt见artifacts/paper-v1/p4-oos-evaluation-v1/p5-decision.json。
