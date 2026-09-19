@@ -1,0 +1,51 @@
+protocol = "paper-p4-reval-v1"
+status = "IN_REVIEW"
+run_id = "p4-reval-20260919-r1"
+parent_protocol = "paper-p4-evaluation-v1"
+read_class = "already_seen_OOS_reassessment"
+test_qualification = "none"
+old_results_guidance = false
+retraining = false
+tuning = false
+sample_or_label_changes = false
+backtest = false
+endpoint_verified = false
+strict_leakage_free_claim = false
+archive_manifest = "artifacts/paper-v1/acquire-20260917T010443459965Z/recovery-1/manifest.json"
+oos_inventory = "artifacts/paper-v1/p4-oos-inventory.json"
+p4_protocol = "configs/paper/p4_evaluation_v1.toml"
+p3_audit = "artifacts/paper-v1/p3-paper-training-v1/p3-final-audit.json"
+
+[resources]
+total_wall_seconds = 14400
+rss_tree_limit_bytes = 8589934592
+rss_sample_seconds = 1
+cuda_reserved_limit_bytes = 6442450944
+artifact_limit_bytes = 8589934592
+minimum_free_disk_bytes = 10737418240
+ledger_interval_seconds = 5
+cpu_threads = 4
+
+[performance]
+device = "cuda_required_with_cpu_fallback_for_preflight_only"
+batch_size = 4096
+num_workers = 0
+zip_read_once = true
+per_year_tensor_conversion = true
+avoid_full_float_copy = true
+inference_amp = false
+model_eval_no_grad = true
+member_order = [0,1,2,3,4]
+
+[metrics]
+primary = ["cross_entropy", "roc_auc", "balanced_accuracy", "accuracy", "brier"]
+threshold = 0.5
+aggregation = "same_fixed_rows_and_common_mean_as_P4; descriptive reassessment only"
+
+[gates]
+preflight = "dual independent then cross audit"
+input_hashes = "archive/inventory/p4 protocol/P3 seal/code/lock"
+run_once = true
+failure = "BLOCKED_no_retry"
+final_acceptance = "dual independent then cross audit"
+next_stage = "none"
