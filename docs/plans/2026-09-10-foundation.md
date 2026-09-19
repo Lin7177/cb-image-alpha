@@ -571,7 +571,7 @@ R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Pa
 
 组合收益使用标签文件 `Ret_month` 作为 proxy；作者 `next_month_ret` sidecar 不在当前仓库，因此状态为 `PASS_WITH_SCOPE_LIMITATION`，不称作者原始组合结果逐字节复现，不恢复测试资格，不改变 endpoint/leakage 限制。产物入口：`artifacts/paper-v1/p4-reval-20260919-r3/portfolio-i20-r20/analysis_final_audit.json`。
 
-后续继续顺序：先整理 I20/R20 的 Table 2–4 风格输出和差异说明；I5/I60 及其余七组标为数据依赖阻断，需取得对应官方图像或原始日频数据后再开新协议；Table 5–12、国际迁移、Linear/CNN1D 对照暂不伪造完成。该状态是“继续复现中的可得范围”，不是关闭论文复现线。
+当前已完成 I20/R20 的 Table 2–4 风格 pooled/按日期指标、十等分 EW/VW、H-L 和 turnover 代理分析；缓存覆盖审计也已完成。I5/I60 及其余七组仍因缺少对应官方图像而数据阻断，后续入口是取得未裁剪的 weekly/quarterly 图像或原始 CRSP 数据后再开新协议；Table 5–12、国际迁移、Linear/CNN1D 对照暂不伪造完成。
 
 ### 官方 CACHE_DIR 覆盖审计（2026-09-19）
 
