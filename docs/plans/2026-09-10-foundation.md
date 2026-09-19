@@ -538,3 +538,8 @@ P5 仅只读核验 P4 阻断。双 Agent 独立审计与交叉质疑无实质分
 R2 零训练、零旧OOS重读完成，双 Agent 独立审计与交叉质疑无实质分歧。已证实：仓库没有新的research-v3 inventory、endpoint sidecar、授权receipt或独立未见区间；官方公开包/README/cache只能支持受限Date proxy，不能可靠重建每行Ret_month真实start/end；P4的2001–2019永久视为已见。候选作者sidecar、同源期间末序列、合法CRSP日数据均当前不可得；同一公开archive未读成员不构成新的独立最终测试。
 
 R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Paper-faithful只能保持受限描述性证据，leakage-controlled需要新endpoint和新未见区间。作者询证/外部联系或申请授权需用户另行明确批准；否则关闭预测评价轴。receipt见`artifacts/paper-v1/research-v3-r2-audit.json`。
+
+
+### P4 人工豁免接受（2026-09-19）
+
+用户明确裁决“预算超时是合理现象，同意原协议上标记正式 PASS”。经双 Agent 只读审查，新增 `P4_PASS_WITH_HUMAN_WAIVER` receipt，接受已完成的一次 OOS 评估作为正式描述性评估结果；原 `blocked.json`、7992.609秒超时、缺少supervisor/ledger和final audit未运行的事实不可变。人工豁免不追认技术预算合规，不把监督器缺失改写为存在，不代表endpoint已验证、严格无泄漏或预测有效性成立；不重读OOS、不重跑、不训练、不调参、不回测，当前轴仍不自动进入后续实验。
