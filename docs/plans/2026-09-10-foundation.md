@@ -6,7 +6,7 @@
 
 ## 当前课程任务 v1.1（2026-10-10）
 
-**当前分支命名整理：ACTIVE。** 用户要求公开分支采用项目名称`paper-replication`，替代原工具默认前缀；只改分支引用与当前链接，不改写Git历史、署名、实验结果或来源记录。先推送新分支并核对历史完整，再移除旧远端引用；main保持不变。证据保存于`artifacts/branch-rename-20261010-r1/`。旧发布脚本绑定旧名称，之后不可直接重跑。
+**当前分支命名整理：PASS_BRANCH_RENAME。** 用户要求公开分支采用项目名称`paper-replication`，替代原工具默认前缀；已先推送新分支并确认原提交均为祖先，再移除旧远端引用；main=`186a44c75330e7ce2c97a53b8dd5008c5a7b91db`保持不变。README/克隆命令/当前发布链接同步新名称。`AGENTS.md`与`docs/agent-handoff.md`从当前Git发布清单分离，本机原文件保留并忽略；适用本机协作约束继续有效。无代码、实验值、署名或历史改写。证据保存于`artifacts/branch-rename-20261010-r1/remote-verification.json`及最终同步receipt。旧发布脚本绑定旧名称，之后不可直接重跑。
 
 **新增当前任务（仓库发布与演示，2026-10-10）：PASS_PUBLICATION_AND_DEMO。** 用户要求整理独立论文分支以提交GitHub链接，并能现场演示且熟悉主体脚本。功能提交`056c25847507df2648d94daea950a305b026532e`已推送`paper-replication`，远端main仍为`186a44c75330e7ce2c97a53b8dd5008c5a7b91db`，正常新分支推送，无合并/强推。按[发布执行计划](2026-10-10-paper-publication.md)已补公开聚合表/10图/精选验收（reports/paper-i20r20）、两模式`paper_demo.py`、发布审计和[脚本导读](../paper-walkthrough.md)，README修复分支克隆与结果入口。干净克隆禁用site-packages的结果重算2.021秒、合成流程26.829秒及发布审计均通过，运行后Git干净。未测试冷机器依赖下载安装，合成流程复用既有锁定Python环境；不改main、不新正式训练、不读原始OOS，不改历史冻结代码/配置；既有未跟踪`paper_p4_evaluate.py`保持不动。
 

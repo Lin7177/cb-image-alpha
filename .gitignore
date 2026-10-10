@@ -33,3 +33,7 @@ Reference_repository/
 build/
 dist/
 *.egg-info/
+
+# Local collaboration instructions; keep the published tree focused on the project.
+AGENTS.md
+docs/agent-handoff.md
