@@ -1,0 +1,29 @@
+{
+  "status": "PASS_CODE_AND_PRESENTATION_PUBLICATION_ONLY",
+  "implementation_commit": "056c25847507df2648d94daea950a305b026532e",
+  "branch_url": "https://github.com/Lin7177/cb-image-alpha/tree/codex/paper-replication",
+  "main_at_publication": "186a44c75330e7ce2c97a53b8dd5008c5a7b91db",
+  "main_unchanged": true,
+  "tests": {
+    "passed": 132,
+    "skipped": 2,
+    "failed": 0,
+    "full_suite_exit_code": 0
+  },
+  "ruff_new_files": "passed",
+  "original_protected_files_unchanged": 89,
+  "published_core_source_hashes": 24,
+  "clean_checkout_checks": {
+    "stdlib_results_python_site_disabled": true,
+    "results_seconds": 2.0210896999924444,
+    "synthetic_workflow_seconds": 26.8292783999932,
+    "publication_audit_passed": true,
+    "git_worktree_clean_after_demo": true
+  },
+  "cold_dependency_installation_tested": false,
+  "workflow_input": "synthetic binary pixels and random labels; same production CNN/training/checkpoint engine",
+  "formal_training_runs_added": 0,
+  "raw_oos_reads": 0,
+  "research_acceptance_changed": false,
+  "note": "Public result snapshot remains r3. This receipt records implementation/presentation publication, not independent replication or profitability. A later documentation-only handoff commit may follow the implementation commit."
+}

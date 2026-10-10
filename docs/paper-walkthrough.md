@@ -63,6 +63,8 @@ uv run --locked python scripts/paper_demo.py --mode workflow
 
 默认CPU、监督墙钟上限180秒、进程树RSS上限2GiB、产物上限128MiB；不同电脑耗时不同。`supervision/`含日志/资源账本；`model/epoch-*/`含checkpoint；`workflow.json`含恢复校验；根`execution.json`含退出码。失败保留现场与错误信息，不覆盖旧run，也不自动重试。所有写入局限于本仓库`artifacts/course-demo/`，不读源行情或正式OOS。
 
+2026-10-10干净克隆实测：结果模式禁用site-packages仍通过，约2秒；合成流程约27秒。功能版本为`056c258`，完整工程核验见[发布检查摘要](../reports/paper-i20r20/RELEASE_CHECKS.json)。这些耗时只描述本机，首次安装环境不计在其中。
+
 ## 现场怎么讲、怎么点
 
 如果只是3分钟正式汇报，建议PPT主讲，脚本只作老师追问时的备用。演示约60-90秒即可：

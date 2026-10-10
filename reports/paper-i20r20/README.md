@@ -4,6 +4,8 @@
 
 [核心源码指纹](source_fingerprints.json)绑定本次发布保留的24项模型/训练/评价/协议/环境文件；发布审计会检查这些字节。它与历史实验验收分别保存，不把发布快照称为新的实验。
 
+[发布检查摘要](RELEASE_CHECKS.json)记录132项通过/2项跳过、干净克隆的两种演示和远端main未变；它属于工程发布证据，结果来源仍是下列r3验收。
+
 - [分类结果](tables/classification.csv)：5成员与集成，含混淆矩阵、accuracy、BA、AUC、CE、Brier及always-up参照。
 - [原文汇总](tables/paper_comparison.csv)与[十分位完整11行](tables/paper_decile_comparison.csv)：Table II I20/R20 EW，H-L直接取原文报告值。
 - [五成员描述统计](tables/member_dispersion.csv)：均值、样本std(ddof=1)、范围和集成；不是CI。
