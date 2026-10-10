@@ -2,7 +2,7 @@
 
 Jiang、Kelly、Xiu（2023，Journal of Finance）原论文的课程复现：**作者成品图像 → 自有CNN → 五成员训练与概率集成 → 分类、十分位及组合评价**。本次覆盖I20/R20一种配置，用20日历史图像预测月度涨跌。论文：[DOI](https://doi.org/10.1111/jofi.13268)；公开图像入口：[作者网站](https://dachxiu.chicagobooth.edu/)。
 
-当前分支：[`codex/paper-replication`](https://github.com/Lin7177/cb-image-alpha/tree/codex/paper-replication)。转债迁移版本保留在[`main`](https://github.com/Lin7177/cb-image-alpha/tree/main)。**提交作业请使用上面的分支链接**，仓库根链接默认打开转债版。
+当前分支：[`paper-replication`](https://github.com/Lin7177/cb-image-alpha/tree/paper-replication)。转债迁移版本保留在[`main`](https://github.com/Lin7177/cb-image-alpha/tree/main)。**提交作业请使用上面的分支链接**，仓库根链接默认打开转债版。
 
 ## 已完成的工作与结果
 
@@ -24,7 +24,7 @@ Jiang、Kelly、Xiu（2023，Journal of Finance）原论文的课程复现：**�
 ## 从正确分支开始
 
 ```powershell
-git clone --branch codex/paper-replication --single-branch https://github.com/Lin7177/cb-image-alpha.git
+git clone --branch paper-replication --single-branch https://github.com/Lin7177/cb-image-alpha.git
 cd cb-image-alpha
 ```
 

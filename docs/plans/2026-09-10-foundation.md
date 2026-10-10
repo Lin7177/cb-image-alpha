@@ -6,11 +6,13 @@
 
 ## 当前课程任务 v1.1（2026-10-10）
 
-**新增当前任务（仓库发布与演示，2026-10-10）：PASS_PUBLICATION_AND_DEMO。** 用户要求整理独立论文分支以提交GitHub链接，并能现场演示且熟悉主体脚本。功能提交`056c25847507df2648d94daea950a305b026532e`已推送`codex/paper-replication`，远端main仍为`186a44c75330e7ce2c97a53b8dd5008c5a7b91db`，正常新分支推送，无合并/强推。按[发布执行计划](2026-10-10-paper-publication.md)已补公开聚合表/10图/精选验收（reports/paper-i20r20）、两模式`paper_demo.py`、发布审计和[脚本导读](../paper-walkthrough.md)，README修复分支克隆与结果入口。干净克隆禁用site-packages的结果重算2.021秒、合成流程26.829秒及发布审计均通过，运行后Git干净。未测试冷机器依赖下载安装，合成流程复用既有锁定Python环境；不改main、不新正式训练、不读原始OOS，不改历史冻结代码/配置；既有未跟踪`paper_p4_evaluate.py`保持不动。
+**当前分支命名整理：ACTIVE。** 用户要求公开分支采用项目名称`paper-replication`，替代原工具默认前缀；只改分支引用与当前链接，不改写Git历史、署名、实验结果或来源记录。先推送新分支并核对历史完整，再移除旧远端引用；main保持不变。证据保存于`artifacts/branch-rename-20261010-r1/`。旧发布脚本绑定旧名称，之后不可直接重跑。
+
+**新增当前任务（仓库发布与演示，2026-10-10）：PASS_PUBLICATION_AND_DEMO。** 用户要求整理独立论文分支以提交GitHub链接，并能现场演示且熟悉主体脚本。功能提交`056c25847507df2648d94daea950a305b026532e`已推送`paper-replication`，远端main仍为`186a44c75330e7ce2c97a53b8dd5008c5a7b91db`，正常新分支推送，无合并/强推。按[发布执行计划](2026-10-10-paper-publication.md)已补公开聚合表/10图/精选验收（reports/paper-i20r20）、两模式`paper_demo.py`、发布审计和[脚本导读](../paper-walkthrough.md)，README修复分支克隆与结果入口。干净克隆禁用site-packages的结果重算2.021秒、合成流程26.829秒及发布审计均通过，运行后Git干净。未测试冷机器依赖下载安装，合成流程复用既有锁定Python环境；不改main、不新正式训练、不读原始OOS，不改历史冻结代码/配置；既有未跟踪`paper_p4_evaluate.py`保持不动。
 
 本轮工程核验：targeted10通过；全套132通过/2跳过；新文件Ruff通过；首次默认pytest临时目录setup失败，改项目内basetemp后通过；全套首轮Windows junction创建被沙箱拒绝，获准原生权限复跑通过（均保留运行记录，不改测试）。89项既有受保护文件（含未跟踪旧evaluator）SHA完全一致，24项核心实现/冻结配置/环境指纹随公开结果保存。结果演示run=`20261010T024806Z-results-b59fceff`；合成流程run=`20261010T024808Z-workflow-0087c250`，生产引擎2epoch含保存/恢复/概率一致验证通过，监督29.468秒、RSS峰1,373,716,480B、产物约20MB；不是新的正式训练。证据目录`artifacts/course-publication-20261010-r1/`含前摘要、测试/检查日志与退出码。Git文件体积约2.2MB；实际最终数量/字节以发布receipt为准。
 
-发布交接：作业/PPT填写`https://github.com/Lin7177/cb-image-alpha/tree/codex/paper-replication`。公开核验摘要见`reports/paper-i20r20/RELEASE_CHECKS.json`；本机`clean-checks.json`、`publish-r1-remote-verification.json`及后续文档交接`publish-r2-remote-verification.json`保存实际退出码和远端SHA。预算延续r4，在4500秒上追加保守1800秒，累计6300秒、余额29700秒，账本`artifacts/course-replication-v1/budget-ledger-v11-publication-20261010.json`；包含两次合成流程，正式新增拟合=0。后续用户先读脚本导读并练两种入口，无自动追加正式实验。
+发布交接：作业/PPT填写`https://github.com/Lin7177/cb-image-alpha/tree/paper-replication`。公开核验摘要见`reports/paper-i20r20/RELEASE_CHECKS.json`；本机`clean-checks.json`、`publish-r1-remote-verification.json`及后续文档交接`publish-r2-remote-verification.json`保存实际退出码和远端SHA。预算延续r4，在4500秒上追加保守1800秒，累计6300秒、余额29700秒，账本`artifacts/course-replication-v1/budget-ledger-v11-publication-20261010.json`；包含两次合成流程，正式新增拟合=0。后续用户先读脚本导读并练两种入口，无自动追加正式实验。
 
 根据用户最新要求，主线调整为 **I20/R20单配置、五成员完整复现与原文同配置对照**。已获数据仅支持该配置，原六组/九组方案移出本次必做及交付依赖，不再因缺其他格把整体标为受阻。五成员与ensemble成为核心结果；不新训练凑工作量，不无限检索数据，不转债、不比较同学仓库、不制作PPT。细节见[执行计划v1.1](2026-10-10-course-replication.md)。
 

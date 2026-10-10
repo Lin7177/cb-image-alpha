@@ -1,7 +1,7 @@
 {
   "status": "PASS_CODE_AND_PRESENTATION_PUBLICATION_ONLY",
   "implementation_commit": "056c25847507df2648d94daea950a305b026532e",
-  "branch_url": "https://github.com/Lin7177/cb-image-alpha/tree/codex/paper-replication",
+  "branch_url": "https://github.com/Lin7177/cb-image-alpha/tree/paper-replication",
   "main_at_publication": "186a44c75330e7ce2c97a53b8dd5008c5a7b91db",
   "main_unchanged": true,
   "tests": {
