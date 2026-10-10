@@ -1,0 +1,10 @@
+{
+  "paper": "Jiang, Kelly, Xiu (2023), Journal of Finance 78, 3193-3249",
+  "doi": "https://doi.org/10.1111/jofi.13268",
+  "author_data": "https://dachxiu.chicagobooth.edu/",
+  "tables": "Table I weekly; Table II monthly/quarterly EW; local text lines 610-660 and 782-820",
+  "published_pdf_sha256": "bad2a7c961c4df2747b4b245e111c0a06dd6b215d99ec6ead3313dd90e6005fa",
+  "method": "Selected factual numeric cells transcribed from supplied published PDF; no full paper redistributed",
+  "paper_classification_accuracy": "Not transcribed; no invented paper accuracy benchmark",
+  "paper_VW_monthly": "Not transcribed from Internet Appendix; no invented counterpart"
+}

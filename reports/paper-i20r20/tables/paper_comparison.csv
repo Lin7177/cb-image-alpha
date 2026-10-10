@@ -1,0 +1,4 @@
+﻿metric,paper_I20R20_Table_II,historical_five_member_ensemble,difference_own_minus_paper,unit,comparability
+EW H-L annualized Sharpe,2.16,1.9932780082793577,-0.1667219917206424,ratio,rounded paper; proxy returns; filtered sample; descriptive comparison
+EW H-L annualized arithmetic return,0.21,0.18371696888359207,-0.026283031116407923,decimal_return,rounded paper; proxy returns; filtered sample; descriptive comparison
+EW monthly turnover,1.73,1.7425952196340833,0.012595219634083277,decimal_turnover,rounded paper; proxy returns; filtered sample; descriptive comparison

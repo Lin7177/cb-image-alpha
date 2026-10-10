@@ -1,0 +1,12 @@
+﻿decile,paper_I20R20_ew_annualized_return,historical_ensemble_ew_annualized_return,paper_I20R20_ew_annualized_sharpe,historical_ensemble_ew_annualized_sharpe,source,return_difference_own_minus_paper,sharpe_difference_own_minus_paper
+1,-0.02,-0.014003017297966124,-0.12,-0.06939689368145538,Published Table II; paper values rounded; historical Ret_month proxy,0.005996982702033877,0.050603106318544616
+2,0.05,0.06409573543783412,0.28,0.33044275087692687,Published Table II; paper values rounded; historical Ret_month proxy,0.014095735437834114,0.050442750876926845
+3,0.07,0.08296605476317297,0.39,0.4307295827568467,Published Table II; paper values rounded; historical Ret_month proxy,0.01296605476317296,0.04072958275684668
+4,0.09,0.10004162487965884,0.49,0.5259288944556528,Published Table II; paper values rounded; historical Ret_month proxy,0.010041624879658845,0.03592889445565284
+5,0.11,0.1136049942616904,0.59,0.6119624936401763,Published Table II; paper values rounded; historical Ret_month proxy,0.0036049942616904057,0.021962493640176328
+6,0.11,0.12800094999306644,0.59,0.7063678515854038,Published Table II; paper values rounded; historical Ret_month proxy,0.018000949993066437,0.11636785158540386
+7,0.13,0.13138724794228865,0.74,0.7320077299874805,Published Table II; paper values rounded; historical Ret_month proxy,0.0013872479422886441,-0.007992270012519453
+8,0.14,0.13709052425817264,0.81,0.790886947412573,Published Table II; paper values rounded; historical Ret_month proxy,-0.002909475741827372,-0.019113052587427015
+9,0.15,0.15769121765437674,0.87,0.9014980986928767,Published Table II; paper values rounded; historical Ret_month proxy,0.007691217654376747,0.031498098692876675
+10,0.18,0.1697139515856259,1.04,1.0308668485989587,Published Table II; paper values rounded; historical Ret_month proxy,-0.010286048414374083,-0.009133151401041317
+H-L,0.21,0.18371696888359207,2.16,1.9932780082793577,Published Table II H-L directly transcribed; do not subtract rounded paper deciles,-0.026283031116407923,-0.1667219917206424

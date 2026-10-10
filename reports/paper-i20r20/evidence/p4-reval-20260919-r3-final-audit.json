@@ -1,0 +1,40 @@
+{
+  "status": "PASS_WITH_TRACEABILITY_CORRECTION",
+  "run_id": "p4-reval-20260919-r3",
+  "protocol": "paper-p4-reval-v1.1",
+  "research_audit": "PASS",
+  "engineering_audit": "PASS",
+  "supervision": {
+    "status": "passed",
+    "exit_code": 0,
+    "reason": null,
+    "elapsed": 473.5309999999881,
+    "peak_rss_tree": 2317684736,
+    "artifact_bytes": 36515180,
+    "scope": "supervisor_plus_all_descendants_sampled_1s",
+    "automatic_retry": false
+  },
+  "rows": 1387781,
+  "raw_rows": 1403975,
+  "excluded_rows": 16194,
+  "sample_id_unique_and_identical_across_members": true,
+  "probabilities_finite": true,
+  "seal_files_verified": true,
+  "metrics_recomputed_exactly": true,
+  "ignored_non_oos_member_count": 36,
+  "ignored_names_sha256_actual": "fcbed7786f03cca9825650b242e6de26e2bab356d9f4bd9b469c79291564c3c5",
+  "authorization_receipt_hash_typo": "1132d656... was produced with a literal backslash-n separator in pre-run metadata; it is not the worker result.",
+  "correction_method": "sha256('\\n'.join(sorted(central_directory_names - OOS_data_names - OOS_metadata_names).encode()))",
+  "old_to_corrected_hash": {
+    "1132d656...": "fcbed7786f03cca9825650b242e6de26e2bab356d9f4bd9b469c79291564c3c5"
+  },
+  "endpoint_verified": false,
+  "strict_leakage_free_claim": false,
+  "test_qualification": "none",
+  "oos_seen": true,
+  "no_training": true,
+  "no_tuning": true,
+  "no_backtest": true,
+  "results_sha256": "400f8b720e4582b0b603d30bcf8dfc16c6087260dc24b00aa83559a23e3cf92b",
+  "seal_sha256": "53e32ce452329421bccaf2d0503d168c068444f958290d1c4a6a9b7ea9063914"
+}

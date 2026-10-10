@@ -1,10 +1,60 @@
 # 项目主控路线图 / Checklist
 
-版本：v2.1发布整理进行中；G0–G8历史协议与验收保留。后续新增论文复现使用独立分支和协议。
+版本：2026-10-10 课程路线整理；G0–G8及paper-v1历史协议与验收保留。当前以本次课程任务为准。
 
 本文件是唯一长期主控：目标、阶段状态、PASS证据、当前任务与主线变更在此维护。局部细节见[架构](../architecture.md)、[迁移地图](../migration-map.md)、[数据审计](../data-audit.md)、[开发规范](../development.md)，不要复制终端日志到主控。
 
-## 目标、范围与完成定义
+## 当前课程任务 v1.1（2026-10-10）
+
+**新增当前任务（仓库发布与演示，2026-10-10）：VERIFYING_PUBLICATION。** 用户要求整理独立论文分支以提交GitHub链接，并能现场演示且熟悉主体脚本。当前本地`codex/paper-replication`，远端核查仅main=`186a44c75330e7ce2c97a53b8dd5008c5a7b91db`。按[发布执行计划](2026-10-10-paper-publication.md)已补公开聚合表/10图/精选验收（reports/paper-i20r20）、两模式`paper_demo.py`、独立发布审计和[脚本导读](../paper-walkthrough.md)，README修复分支克隆与结果入口。下一步干净克隆验证并仅推论文分支；不改main、不新正式训练、不读原始OOS，不改历史冻结代码/配置；既有未跟踪`paper_p4_evaluate.py`保持不动。
+
+本轮工程核验：targeted10通过；全套132通过/2跳过；新文件Ruff通过；首次默认pytest临时目录setup失败，改项目内basetemp后通过；全套首轮Windows junction创建被沙箱拒绝，获准原生权限复跑通过（均保留运行记录，不改测试）。89项既有受保护文件（含未跟踪旧evaluator）SHA完全一致，24项核心实现/冻结配置/环境指纹随公开结果保存。结果演示run=`20261010T024806Z-results-b59fceff`；合成流程run=`20261010T024808Z-workflow-0087c250`，生产引擎2epoch含保存/恢复/概率一致验证通过，监督29.468秒、RSS峰1,373,716,480B、产物约20MB；不是新的正式训练。证据目录`artifacts/course-publication-20261010-r1/`含前摘要、测试/检查日志与退出码。Git文件体积约2.2MB；实际最终数量/字节以发布receipt为准。
+
+根据用户最新要求，主线调整为 **I20/R20单配置、五成员完整复现与原文同配置对照**。已获数据仅支持该配置，原六组/九组方案移出本次必做及交付依赖，不再因缺其他格把整体标为受阻。五成员与ensemble成为核心结果；不新训练凑工作量，不无限检索数据，不转债、不比较同学仓库、不制作PPT。细节见[执行计划v1.1](2026-10-10-course-replication.md)。
+
+**里程碑仅作简短进度汇报检查点，通过后立即继续，不停工等确认。** 这是用户最新执行指令，覆盖历史每Gate另问规则。仅真实权限、重大未决语义/协议、超预算或非预期执行异常暂停受影响工作；可独立工作继续。研究/工程审阅是核验步骤，不是自动向用户请求确认的节点。
+
+| Milestone | 当前状态 | 实际出口与下一动作 |
+|---|---|---|
+| M1 范围/证据核对 | PASS_ROUTE_ONLY | v1.1研究/工程同版独立及双向交叉确认，无分歧；正常继续M2 |
+| M2 对照/离散/差异素材 | PASS_ANALYSIS_ONLY | 原文D1–D10+H-L11行/turnover、13项五成员描述统计、5分类参照、设定差异已补齐 |
+| M3 解释与正式复核 | PASS_DERIVED_ANALYSIS | 研究/工程分别重算并双向交叉无分歧；6项文件hash绑定；不重训、不推理、不读原始OOS |
+| M4 最终单配置素材包 | PASS_FINAL_SINGLE_CONFIGURATION_DELIVERY | r4补齐z.ai单文件PDF/提示词：13页、10图、可检索数据；PDF全文/逐页视觉、父输入hash、ZIP CRC/逐项hash通过；不改变实验或研究验收 |
+
+完成定义：I20/R20单配置受限复现与素材交付完成，不等于完整论文/九组、严格无泄漏或盈利证据。主要对照原文Table II EW H-L SR2.16/年化算术Ret0.21/月频turnover1.73，以及十分位形态；分类基线和全部成员/EWVW共同解释。五成员std是split/norm/初始化等联合波动，不是CI。
+
+预算不归零：v1已保守扣账1800秒、余额34200秒；v1.1新分析/核验分配3600秒、素材5400秒，其余25200秒保留未分配，不自动启动新训练。原v1路线历史见下，冻结快照在 `artifacts/course-replication-v1/scope-v11/`。当前无需等待用户重复批准同范围工作。
+
+v1.1证据：`artifacts/course-replication-v1/scope-v11/route-audit-v11.json`；新增分析 `artifacts/shares/course-materials-20261010-r3/bundle/ANALYSIS_ACCEPTANCE.json`，研究/工程独立核算13项离散统计、11行原文对照/差值、3行经济汇总及5项分类参照，父输入摘要核对通过。五成员EW H-L SR范围1.47165–2.18057、均值1.91393、样本std0.27446，ensemble1.99328；不能据此称CI或跨配置结论。历史评价run名 `p4-reval-20260919-r3` 与当前素材run `course-materials-20261010-r3` 分开。
+
+最终交付（网页版上传增补r4）：`artifacts/shares/cb-image-alpha-I20R20-zai-materials-20261010-r4.zip`，2,813,098B，200项，SHA256 `b923d24a904587ad7db84589e298ecd1b43f1eb1caca34d5f0f2fbc5a6166edd`；receipt为 `artifacts/shares/course-materials-20261010-r4/DELIVERY.json`。新增`UPLOAD_TO_ZAI/核心素材册.pdf`（13页、全部10图、数据/边界/问答）、提示词TXT、精确文字MD及4主图PNG。最少1个PDF附件＋粘贴提示词；加4图合计5附件，上传目录全选8文件也不超过10。逐页渲染视觉、提取文字、188项父manifest及接受文件hash、ZIP CRC/逐项hash通过；只做呈现增补，无新研究验收。原r3（1,506,004B，189项，SHA256 `5fa7a66691ad4380d7344764a94d298c3bf7743e33341cb2e3eb95c079f49080`）保留不覆盖，原始分析表/10图/精选源码及证据仍在r4完整包中。source文档为历史快照，当前状态以本段为准。
+
+交接结论：**本次I20/R20单配置受限复现与素材交付完成**，完整论文九组/原始CRSP渲染/严格无泄漏/实盘盈利均不在已完成声明内。本轮没有新训练、推理或原始OOS解码，保留所有历史失败/豁免。r4追加呈现预算账本见 `artifacts/course-replication-v1/budget-ledger-v11-r4-20261010.json`：在此前3600秒上增加保守900秒，累计4500秒、余额31500秒（含非机器等待，不是GPU计时），不重置预算、不自动追加实验。所有正常检查点已连续推进完成，不需再问是否进入下一里程碑。
+
+## 上一版课程任务 v1（2026-10-10，历史；已被v1.1取代）
+
+用户已批准以本次商讨为准整理文档并完整推进素材包；只做第一篇原论文代码复现，供3–4页/约3分钟展示，不制作PPT、不再比较同学仓库、不做转债拓展。距汇报约72h，追加累计机器运行10h。执行细节见[课程计划](2026-10-10-course-replication.md)，决策见[ADR0002](../adr/0002-course-replication-scope.md)。
+
+目标先六组 I{5,20,60}×R{5,20}（先R20三组，再R5）；统一固定首成员，九组为有输入/预算余量时的条件扩展。现有I20/R20五成员结果保留为补充；member-0仅在协议匹配时复用。以原论文Table I/II EW H-L Sharpe为主比较，分类准确率/基线、十分位、VW、收益/波动/换手及训练过程共同支撑展示。
+
+| Task | 当前状态 | 证据/前置与下一动作 |
+|---|---|---|
+| C0 课程路线及旧入口清理 | PASS_ROUTE_ONLY | course_scope_research / course_scope_feasibility 独立及双向交叉确认，无阻断；receipt见下 |
+| C1 公开输入可用性核查 | DATA_BLOCKED | 已核查作者官网当前入口、HTTP标识、Kelly页面及期刊补充；未发现其余格完整输入，不等于全球不可得 |
+| C2 下载/数据准备 | BLOCKED_BY_C1 | 用户无额外包/CRSP权限；不重复下载相同包 |
+| C3 独立入口/协议/开发成本预检 | BLOCKED_BY_C1 | 当前历史入口仅I20/R20；具体协议NOT_READY_TO_TRAIN，不写无输入的训练框架凑进度 |
+| C4 六组→条件九组执行/验收 | BLOCKED_BY_C1 | 新增fit=0；六组目标未达成；不据OOS结果调参 |
+| C5 课程素材包 | PASS_DELIVERY_ONLY | r2进度包已交付、9张PNG/SVG和讲述/备用问答；六组目标仍受阻，非研究结果PASS |
+
+授权：本次用户确认支持既定有界路线按条件依次推进，取代旧“每阶段另问”的当前任务入口；不覆盖未知数据许可、重大语义/协议变更、预算突破或失败新增尝试。遇实际输入阻断记录证据并暂停依赖实验，可继续非依赖素材整理，不将六组标完成。旧G/P/research-v3不自动启动。
+
+证据：`artifacts/course-replication-v1/route-audit-20261010.json`；`preflight-20261010-r1/public-source-check.json`保留沙箱DNS失败，`source-metadata-20261010-r2/public-source-check.json`为获准网络后的HTTP200核查；只读取HTML/HTTP头、ZIP payload=0。输入恢复条件：取得对应完整合法图像包或同源CRSP原始数据并验证；当前核查没有消耗未见测试资格、没有新训练或原始OOS解码。
+
+本轮交付：`artifacts/shares/cb-image-alpha-course-materials-20261010-r2.zip`，1,435,867B，182项，SHA256 `7a76977d2e3413f9f5e6c869da1045c491684a9d6e0005ecf6a3b92e1c5b838e`；`course-materials-20261010-r2/DELIVERY.json`通过ZIP CRC/逐文件hash/CSV对账/链接/视觉检查。新增原文覆盖与差值、十分位对照、成员/集成对比；`PRESENTATION_MATERIALS.md`提供3–4页/3分钟取舍及备用问答。原r1不覆盖，r2取代其当前分享用途。source文档为打包时快照，不承载之后的动态状态。
+
+交接：**本轮文档与受阻进度包完成，六组复现没有完成；新增训练/推理/原始OOS解码均为0。** 预算账本见 `artifacts/course-replication-v1/budget-ledger-20261010.json`。下一有效入口是补齐对应完整合法输入并核验；用户当前无额外包/CRSP权限，公开入口有界核查未找到，故不空跑、不无限搜索、不自动转其他市场/标签。旧I20/R20历史结果可供小组先组织材料；若缺口不能解决，应由用户裁定是否接受单配置作业范围，不能由Agent悄悄降级目标。
+
+## 历史目标、范围与完成定义（转债线）
 
 使用用户只读日线仓库 `D:\git-windows\副本备份区\nautilus_data\catalog`，在本机RTX5060 Laptop（8151 MiB）实现自有I20/R5图像CNN：20交易日OHLC+MA20+成交量图，预测未来5交易日价格收益方向。复权口径必须由数据验证，不能默认总收益。
 
@@ -13,7 +63,7 @@
 G0–G6历史范围不含九组I/R、五模型集成、滚动调参、分钟实验、因子融合、交易引擎、组合回测；首个正式实验单seed。新增G7–G9仅为开发研究路线设计，不改写此前授权或结果；固定时间顺序回放不等于授权无界调参。
 
 
-## 执行控制（2026-09-11用户最新指令，优先于旧执行授权）
+## 历史执行控制（2026-09-11；当前课程授权覆盖关系见顶部）
 
 LLM负责高信息密度决策，程序负责机械执行，仓库文档负责长期记忆。
 
@@ -23,7 +73,7 @@ LLM负责高信息密度决策，程序负责机械执行，仓库文档负责�
 - 普通实现、测试、修复和状态更新由主Agent完成。仅项目主线、数据/标签/实验协议、PASS Gate实质变更及正式结果验收使用多Agent独立审计。用户明确指定的执行规则直接同步，不为转录增加审计。
 - Gate停止时在主控记录状态、关键证据、未决问题、恢复条件、下一Gate入口及是否获用户确认，使新会话可从仓库恢复。
 
-### 当前交接
+### 历史交接（转债发布阶段，非当前入口）
 
 **G0–G8已PASS；G9未执行。当前进行转债版本发布整理，随后建立原论文复现分支。预测有效性尚未得到支持。** 正式运行 `artifacts/runs/formal-20260912T083408279881Z` completed，三阶段exit0，双Agent独立及双向交叉审计PASS；最终验收记录为该run的 `g5-acceptance.json`。G1–G4协议未变。
 
@@ -34,7 +84,7 @@ Test accuracy48.6446%、balanced accuracy50.0770%、AUC0.498393、log loss0.7142
 未决限制：单seed、重叠R5样本、catalog价格/数量物理单位及EOD可得假设继续保留。Final Test已经查看，后续不得称未见Test或据此调参再报告首次结果。源和参考库保持只读；无未决G5阻断。长期基本复现范围已完成；新发布/论文复现目标正在执行。
 交接入口：本主控“后续研究主线”及architecture的research-v2节。方案审计历史保留；用户已批准G7并在失败后重新确认继续，恢复批次已completed并双审PASS；关键证据见本文件G7/G8最终交接；G8已完成。历史G6证据与复核命令仍有效。
 
-## 当前定位与状态
+## 历史定位与状态（G0–G9）
 
 G0 治理审定（PASS） → G1 环境/数据 PASS → G2 样本/切分 PASS → G3 图像/模型 PASS → G4 冒烟 PASS → **G5 正式实验 PASS** → G6 独立验收 PASS。
 
@@ -51,7 +101,7 @@ G0 治理审定（PASS） → G1 环境/数据 PASS → G2 样本/切分 PASS �
 | G8 | PASS | G7+用户确认 | 公平简单基线与时间顺序回放 |
 | G9 | PENDING（建议不启动，待用户裁决） | G8+单分支确认 | 一项剩余解释的判别或关闭研究 |
 
-当前任务：paper-p3-training-v1已双独立交叉审计FROZEN；按用户要求停止等待开训确认。生产训练器/CPU-CUDA preflight尚未验收，非READY_TO_TRAIN，P3结果未PASS。P1/P2冻结，OOS封存。
+历史P3开训前快照已被后续交接取代：P3五成员已PASS，r3已完成受监督的已见OOS重评及受限组合分析。当前任务见顶部课程表；不得据旧快照重复开训或宣称OOS仍未见。
 
 状态：PENDING未开始；ACTIVE执行中；IN_REVIEW等待复核；BLOCKED记录具体障碍/恢复条件；PASS全部验收满足；INVALIDATED旧PASS因输入或契约改变失效。不能以进度百分比替代PASS。前置未过时仅允许独立的合成测试/审计等准备，不得启动依赖未知语义的正式下游运行。
 
@@ -576,3 +626,11 @@ R2审计状态`PASS_AUDIT_STOP`，但数据可行性未通过，R3不启动。Pa
 ### 官方 CACHE_DIR 覆盖审计（2026-09-19）
 
 只读扫描 Reference_repository/jofi13268-sup-0002-replicationcode/trend_submit/CACHE_DIR.zip 的现有压缩成员，得到 108 个模型组合缓存，覆盖九组 I/R、CNN1D/Linear、ret/image/vol 三类信号和 EW/VW 两种组合权重。官方 README 同时明确 CACHE_DIR 每个文件只保留首 50 行和末 50 行，因此这些缓存只能用于命名、字段和组合公式的 sanity check，不能替代完整样本重跑，也不能补齐缺失的官方图像。机器证据：artifacts/paper-v1/paper-cache-audit.json，其中 full_reproduction_input=false。I20/R20 仍是当前唯一拥有可重建图像与完整概率链的配置。
+
+### 历史结果分享包交付（2026-10-10 r1，非研究 Gate）
+
+用户批准将 ZIP 更新为可与同学报告并排阅读的结果分享包。当前任务仅从既有封存产物导出分类明细、训练历史、组合/逐年 CSV 与图表，保留轻量源码、冻结配置及精选验收记录；不训练、不推理、不读取原始 OOS 图像/标签、不修改历史协议或研究 PASS 状态，不进入下一研究 Gate。
+
+导出检查已核对五成员预测文件摘要、共同 ID/标签、1,387,781 条分类样本、227 个组合日期、44 个完整训练 epoch、最佳 epoch 6/8/4/4/12，以及 H-L/均值/波动与原结果的一致性。r3 原生 float32 平均和 p>=0.5 保留为主分类口径；后续分析 float64 平均和 p>0.5 单列，两者差一条边界样本；交叉熵原值与 float64 复算分列，不覆盖旧结果。历史 AUC/Spearman 的并列处理、Ret_month proxy、已见 OOS 和 endpoint 未验证限制在报告披露。
+
+交付证据入口：`artifacts/shares/share-20261010-r1/bundle/EXPORT_RECEIPT.json`、`FILE_MANIFEST.json` 和该 run 的 `DELIVERY.json`。ZIP 完整性/摘要最终状态以 DELIVERY 为准，不将导出检查视为新的正式实验验收。同学数字只引述美股报告，未独立核验；没有 A 股跨市场新结果。分享产物不包含原始数据、参考代码、论文 PDF、checkpoint 或逐样本预测。完成交付后停止，后续研究入口及数据阻断保持上节状态。

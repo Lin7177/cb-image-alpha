@@ -1,0 +1,6 @@
+﻿metric,reference,baseline,ensemble,difference_ensemble_minus_baseline
+accuracy,always-up hard decision,0.5302198257506048,0.5328225418852109,0.0026027161346061645
+accuracy,always-down hard decision,0.4697801742493952,0.5328225418852109,0.06304236763581572
+balanced_accuracy,always-up hard decision; both classes exist,0.5,0.5266271491376466,0.026627149137646633
+cross_entropy,"constant probability 0.5; log(2), lower is better",0.6931471805599453,0.6902581513119521,-0.002889029247993169
+brier,constant probability 0.5; lower is better,0.25,0.24855669688062165,-0.0014433031193783474

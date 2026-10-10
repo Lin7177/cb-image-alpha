@@ -1,0 +1,40 @@
+{
+  "status": "PASS_DERIVED_ANALYSIS",
+  "version": "1.1",
+  "reviewers": [
+    "course_scope_research",
+    "course_scope_feasibility"
+  ],
+  "independent_reviews": true,
+  "cross_review_confirmed": true,
+  "accepted_file_hashes": {
+    "tables/member_dispersion.csv": "c946d2ecd774eb225a8b1d1ba88d8f3564c86179124b4640d16652b17fc6bc4f",
+    "tables/paper_decile_comparison.csv": "686902238734de7e5da0b8e3b14cc90a7d6714a42ce63b5c14a595fb0ec3a399",
+    "tables/paper_comparison.csv": "2ca9540723fd736c38d7361eff0a0c142b8d0380435c2abfb3d3cdac4d84f892",
+    "tables/classification_baselines.csv": "e9f2f4890a52842cf31b368fcff2977b4e4fb6c861198ed2d38dce79a5f8a3d6",
+    "tables/experiment_differences.csv": "b32933851df76d974a4c856e5dc2089da9022080e3e740f43e98a6254038f3f2",
+    "PRESENTATION_MATERIALS.md": "8f98166b791c3c3ede6fa8e92ae849d82d3ed1a7b8cfe67992f71855c4c1f00b"
+  },
+  "checks": [
+    "13 metrics; all five-member mean/sample-std/min/max/ensemble independently recomputed",
+    "published Table II eleven EW rows and direct H-L values verified; differences checked",
+    "three H-L summary rows and monthly turnover units checked",
+    "five classification baseline rows verified",
+    "parent input hashes match r2 aggregate files",
+    "sample/training history counts match",
+    "single-configuration and joint-randomness/no-CI claims checked"
+  ],
+  "source_clarification": "EXPORT_RECEIPT inputs refer to parent r2 aggregates, not current derived outputs; explicit parent paths added.",
+  "limits": [
+    "Ret_month proxy",
+    "unverified endpoint",
+    "already-seen evaluation",
+    "no trading costs",
+    "ordinal historical AUC/Spearman ties",
+    "five members differ in split/normalization/initialization; descriptive variability not CI"
+  ],
+  "raw_oos_reads": 0,
+  "new_training": false,
+  "new_inference": false,
+  "recorded_at_utc": "2026-10-10T02:13:35.609100+00:00"
+}

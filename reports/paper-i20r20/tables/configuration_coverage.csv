@@ -1,0 +1,10 @@
+﻿config,image_days,return_horizon,course_scope,historical_status,course_single_member_reuse,paper_ew_hl_sharpe,historical_ensemble_ew_hl_sharpe,difference_historical_ensemble_minus_paper,caveat
+I5/R5,5,5,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,7.15,,,Not run; blank is not zero
+I5/R20,5,20,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,2.35,,,Not run; blank is not zero
+I5/R60,5,60,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,1.3,,,Not run; blank is not zero
+I20/R5,20,5,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,6.75,,,Not run; blank is not zero
+I20/R20,20,20,required_single_configuration,FIVE_FITS_AND_PROXY_ANALYSIS_COMPLETED,not_applicable_five_member_scope,2.16,1.9932780082793577,-0.1667219917206424,Ret_month proxy; already seen; not course single-member matrix
+I20/R60,20,60,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,0.37,,,Not run; blank is not zero
+I60/R5,60,5,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,4.89,,,Not run; blank is not zero
+I60/R20,60,20,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,1.29,,,Not run; blank is not zero
+I60/R60,60,60,outside_this_assignment,DATA_BLOCKED,not_applicable_five_member_scope,0.43,,,Not run; blank is not zero

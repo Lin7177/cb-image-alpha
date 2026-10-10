@@ -1,0 +1,62 @@
+{
+  "status": "PASS_WITH_SCOPE_LIMITATION",
+  "analysis": "paper_i20_r20_period_metrics_and_deciles",
+  "input_run": "p4-reval-20260919-r3",
+  "files_verified": true,
+  "signals_verified": [
+    "ensemble",
+    "member-0",
+    "member-1",
+    "member-2",
+    "member-3",
+    "member-4"
+  ],
+  "rows": 1387781,
+  "dates": 227,
+  "turnover_transitions": 226,
+  "portfolio_proxy": true,
+  "return_field": "Ret_month",
+  "official_period_return_sidecar_available": false,
+  "limitation": "Uses the official labels file Ret_month as the return proxy. This reproduces the documented decile mechanics but is not a byte-for-byte reconstruction of the authors next_month_ret sidecar.",
+  "no_training": true,
+  "no_tuning": true,
+  "no_backtest_engine": true,
+  "test_qualification": "none",
+  "endpoint_verified": false,
+  "strict_leakage_free_claim": false,
+  "ensemble_period_metrics": {
+    "rows": 1387781,
+    "loss": 0.6902581493949864,
+    "accy": 0.5328218213104229,
+    "diff": 0.2082280993903216,
+    "MCC": 0.05434685217545287,
+    "accuracy_mean": 0.5328096731034252,
+    "spearman_mean": 0.05255170025780266,
+    "pearson_mean": 0.030278014380146177
+  },
+  "ensemble_ew_hl": {
+    "mean_monthly": 0.015309747406966006,
+    "annualized_return": 0.18371696888359207,
+    "annualized_volatility": 0.09216826158744443,
+    "annualized_sharpe": 1.9932780082793577
+  },
+  "ensemble_vw_hl": {
+    "mean_monthly": 0.003045922647393623,
+    "annualized_return": 0.03655107176872348,
+    "annualized_volatility": 0.1157214480569929,
+    "annualized_sharpe": 0.3158539093869794
+  },
+  "ensemble_turnover": {
+    "ew": {
+      "mean_top_bottom_turnover": 1.7425952196340833,
+      "transitions": 226,
+      "skipped_dates": 0
+    },
+    "vw": {
+      "mean_top_bottom_turnover": 1.8189434609028328,
+      "transitions": 226,
+      "skipped_dates": 0
+    }
+  },
+  "manifest_sha256": "84a50f333b40fa1e6c0c14c48d3b197350ee8466186575decbfda87fff559817"
+}

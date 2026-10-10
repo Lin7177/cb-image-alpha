@@ -1,0 +1,193 @@
+{
+  "scope": "paper_I20R20_five_member_limited_replication",
+  "input_material_run": "course-materials-20261010-r3",
+  "input_material_zip_sha256": "5fa7a66691ad4380d7344764a94d298c3bf7743e33341cb2e3eb95c079f49080",
+  "evaluation_run": "p4-reval-20260919-r3",
+  "endpoint_verified": false,
+  "strict_leakage_free_claim": false,
+  "test_qualification": "none",
+  "returns": "Ret_month proxy; no costs",
+  "files": [
+    {
+      "path": "tables/summary.json",
+      "bytes": 72612,
+      "sha256": "066b457e8a883eb5278c63e847de43cdf0542a667285f9e9de9bce6ebcdca452",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/summary.json"
+    },
+    {
+      "path": "tables/paper_sources.json",
+      "bytes": 674,
+      "sha256": "5980059750c448f208292fa0f9aa4235018eda075dc5c45cc55685f18c8e4458",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/paper_sources.json"
+    },
+    {
+      "path": "tables/classification.csv",
+      "bytes": 2219,
+      "sha256": "a5bb0b90eadda0df3a4dcb4fa3934d177216129614b09351fbf37ef9f5dda842",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/classification.csv"
+    },
+    {
+      "path": "tables/classification_baselines.csv",
+      "bytes": 593,
+      "sha256": "e9f2f4890a52842cf31b368fcff2977b4e4fb6c861198ed2d38dce79a5f8a3d6",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/classification_baselines.csv"
+    },
+    {
+      "path": "tables/paper_comparison.csv",
+      "bytes": 579,
+      "sha256": "2ca9540723fd736c38d7361eff0a0c142b8d0380435c2abfb3d3cdac4d84f892",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/paper_comparison.csv"
+    },
+    {
+      "path": "tables/paper_decile_comparison.csv",
+      "bytes": 2053,
+      "sha256": "686902238734de7e5da0b8e3b14cc90a7d6714a42ce63b5c14a595fb0ec3a399",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/paper_decile_comparison.csv"
+    },
+    {
+      "path": "tables/member_dispersion.csv",
+      "bytes": 3063,
+      "sha256": "c946d2ecd774eb225a8b1d1ba88d8f3564c86179124b4640d16652b17fc6bc4f",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/member_dispersion.csv"
+    },
+    {
+      "path": "tables/experiment_differences.csv",
+      "bytes": 1924,
+      "sha256": "b32933851df76d974a4c856e5dc2089da9022080e3e740f43e98a6254038f3f2",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/experiment_differences.csv"
+    },
+    {
+      "path": "tables/deciles.csv",
+      "bytes": 12783,
+      "sha256": "092b798deaedc351fae63cb1c364eedfb1fd8d7620793e953e720f10f774d8a1",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/deciles.csv"
+    },
+    {
+      "path": "tables/monthly_portfolios.csv",
+      "bytes": 115861,
+      "sha256": "9bca5cac2b1c26736676030f3697ffa6e0d9a1e7bdc8df505de50e8703d55ed5",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/monthly_portfolios.csv"
+    },
+    {
+      "path": "tables/training_history.csv",
+      "bytes": 2667,
+      "sha256": "4a7b6ee531ae6f530aa34067c448453bba7f210f9b7f3f28fc315cc459df3230",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/training_history.csv"
+    },
+    {
+      "path": "tables/turnover.csv",
+      "bytes": 525,
+      "sha256": "1ce35d0599e4233a37362104e08a062b2a545bde86d3c16d70d27f8bf2e1504c",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/turnover.csv"
+    },
+    {
+      "path": "tables/yearly.csv",
+      "bytes": 2205,
+      "sha256": "ad5284522b601eb4a8090900ff4e313431677f552bac2611aa52cd51cdb6e914",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/yearly.csv"
+    },
+    {
+      "path": "tables/configuration_coverage.csv",
+      "bytes": 1360,
+      "sha256": "c80b7d047b34cba5137f97984a98598c53a3d25a743c1d54fff2873eee3f7aa2",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/tables/configuration_coverage.csv"
+    },
+    {
+      "path": "figures/01_training_loss.png",
+      "bytes": 127683,
+      "sha256": "de572a57f63ff8dc3f94d9ebf08aeef3032b6729db53593a2fd3996b4983a3b8",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/01_training_loss.png"
+    },
+    {
+      "path": "figures/02_decile_returns.png",
+      "bytes": 52448,
+      "sha256": "c075d144eed86d92be025abb32308d58820f565f4aeda7c6dc723e00e0c7b924",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/02_decile_returns.png"
+    },
+    {
+      "path": "figures/03_hl_time_series.png",
+      "bytes": 199119,
+      "sha256": "d13614aaba57a34d47d028af599ca20e3e04c63c81e3ccf26fbc78d316035b0d",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/03_hl_time_series.png"
+    },
+    {
+      "path": "figures/04_yearly_results.png",
+      "bytes": 151351,
+      "sha256": "252663167d4febf0f9c6aa24935a0495543dbd34fc7d1a50b33e633c47071016",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/04_yearly_results.png"
+    },
+    {
+      "path": "figures/05_method.png",
+      "bytes": 122585,
+      "sha256": "359d7d46b3b7673085725d0a647b531ac004e4be8534306950d233405a9a621d",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/05_method.png"
+    },
+    {
+      "path": "figures/06_confusion_matrix.png",
+      "bytes": 67566,
+      "sha256": "e668e24846007eb4dc1f86ba5a036da47221ef32f959a1076222dec487d2af08",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/06_confusion_matrix.png"
+    },
+    {
+      "path": "figures/07_paper_coverage.png",
+      "bytes": 92076,
+      "sha256": "9fffecabacb2836bd32d74903276db93df1b39cfd272243ab6fa4d32340200c3",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/07_paper_coverage.png"
+    },
+    {
+      "path": "figures/08_paper_deciles.png",
+      "bytes": 73026,
+      "sha256": "a59f328b7c910d5e25cc100b016c8e43879b42c01672ede7aab646632c9d863c",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/08_paper_deciles.png"
+    },
+    {
+      "path": "figures/09_member_ensemble.png",
+      "bytes": 100272,
+      "sha256": "bc2e3244493305e347ebcdb9b3ee75cce178fe062ee13a296735cf006c7dc03f",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/09_member_ensemble.png"
+    },
+    {
+      "path": "figures/10_paper_hl_summary.png",
+      "bytes": 64440,
+      "sha256": "6c9d9ca1702bff3c4c51e3b5f6ecc175e629581c2479665615cdcd32eab0a859",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/figures/10_paper_hl_summary.png"
+    },
+    {
+      "path": "report.html",
+      "bytes": 167129,
+      "sha256": "ff211045d99700d8eb2a7d438069e71808d3713e1ae38d97dad8d98488bf9705",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/report.html"
+    },
+    {
+      "path": "PRESENTATION_MATERIALS.md",
+      "bytes": 5948,
+      "sha256": "8f98166b791c3c3ede6fa8e92ae849d82d3ed1a7b8cfe67992f71855c4c1f00b",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/PRESENTATION_MATERIALS.md"
+    },
+    {
+      "path": "ANALYSIS_ACCEPTANCE.json",
+      "bytes": 1934,
+      "sha256": "79f30cbdb841e883f1c6cc57228e3ce777602f081b053641d485d7fbb04090e7",
+      "source_path": "artifacts/shares/course-materials-20261010-r3/bundle/ANALYSIS_ACCEPTANCE.json"
+    },
+    {
+      "path": "evidence/p3-final-audit.json",
+      "bytes": 1232,
+      "sha256": "bc7a999de27fd8d75d2c5cd346018bee1634817b5c30ac6bb85a1c3cdd8af162",
+      "source_path": "artifacts/paper-v1/p3-paper-training-v1/p3-final-audit.json"
+    },
+    {
+      "path": "evidence/p4-reval-20260919-r3-final-audit.json",
+      "bytes": 1619,
+      "sha256": "29236310a494fe6f366a5a265d71fb01265defd215e5c5cb44e3e992bf3fc13a",
+      "source_path": "artifacts/paper-v1/p4-reval-20260919-r3-final-audit.json"
+    },
+    {
+      "path": "evidence/analysis_final_audit.json",
+      "bytes": 2004,
+      "sha256": "820837883f858f0426b6eee2d574906d9f1423389c8f2d95a3588a6d4d8d9d02",
+      "source_path": "artifacts/paper-v1/p4-reval-20260919-r3/portfolio-i20-r20/analysis_final_audit.json"
+    }
+  ],
+  "note": "Copies preserve input bytes. Figure05 uses a synthetic schematic; historical audit evidence does not imply a fresh-clone full training rerun. No private data, checkpoints, sample-level predictions or third-party code."
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "Core implementation and frozen protocols preserved at publication; not a new experiment run",
+  "sha256": {
+    "configs/paper/p3_training_v1.toml": "c213bf183f822e40576265f987832900bf7350880c0ab5278b6771273450744d",
+    "configs/paper/p4_evaluation_v1.toml": "677e9b1bf0bf8f2f71b1ee9785e5700feb54a7d3853ac5807ebdbcce7dcf7264",
+    "configs/paper/p4_reval_v1.toml": "dc9070c1739864e7e4030c9a0685cc1c43f3745eb3bf71d8bd124ebdc72d728b",
+    "configs/paper/paper_b_v1.toml": "434b3fffd407ad262bd4ba583f6e29e6ece97fb43b6c7acf9e53c855955e7c35",
+    "pyproject.toml": "f4dc69e9f8457a3d0fc372a4b3943bd54c5ea84fb03b243ad3aa79099829a5ff",
+    "scripts/paper_data.py": "d0bd640899c3552aa0d6b62969051952607077c6236ae305b43b3f47b50739f4",
+    "scripts/paper_p3.py": "81cd1788977cb4a922a2efd3ae9828c8cf87e7773d999f1c12bb1fdf596d28e8",
+    "scripts/paper_p3_worker.py": "5f421348a93447df41d38637ec751900dc641f174ef38ebd34a873acc31a6378",
+    "scripts/paper_p4_metrics.py": "a970c9c337a1d8a364dcea0523c4c0c48cecb8dcf28e59b5e467940b7852a827",
+    "scripts/paper_p4_portfolio.py": "60c631aa8953d287ecbd5af4fdd498288904e12c473396c1221cc2bd926a816d",
+    "scripts/paper_p4_portfolio_turnover.py": "f635d31d8e11ff46e671c614cc10d43eb76b43646dcf0b6da9775ebf13e00be2",
+    "scripts/paper_p4_reval.py": "2b05bc50371a26f553ca8fe9e3757ec131c5bad989dcc59d040f344e401aa490",
+    "scripts/paper_p4_reval_worker.py": "27fa7c71c96cc8ff8d38eb775f20ba726de5643b091fe3ace3f1f271b3cca551",
+    "scripts/prepare_paper_b.py": "35486f36d4e46f906b43bef3381a7fc15f617e2ff329d549b1b87af36c22a0fc",
+    "scripts/recover_paper_data.py": "7cca0343d25fcdc8202994c385c35adbb46c1a3fac1adea3401cdd4d86069e41",
+    "src/cb_image_alpha/models/paper_cnn.py": "a6ffd94533aefb56e6aaa6e89822f6b3171931c5fce8b6ccaae499a1525426db",
+    "src/paper_replication/__init__.py": "85b7edb29e90dddf69cd720c41fcecf3b816f5bc7dad5225e62e2b6d0a094586",
+    "src/paper_replication/contracts.py": "ed739c23a209944abea1a0e8e0dfc2cb0b39aa3819ff8b874811bf01ce139d7a",
+    "src/paper_replication/p3_checkpoint.py": "294caa7546e39c8133d9815a6e509058ed0a1b9d4318576b82a5fce93d18c20c",
+    "src/paper_replication/p3_data.py": "3e1e5ed572bd41385e762175acc85cf55fa9727fae660bea16e25a37295586f0",
+    "src/paper_replication/p3_engine.py": "b084ea9d58413e907e590b2f6112dcfa7dec0ff63e5833f5062cdb2616f4a316",
+    "src/paper_replication/p3_supervision.py": "65ace1f83a300dd7477a81e1d1d35f6dc9cced8470ef235c48b725f17964bf18",
+    "src/paper_replication/state.py": "ccbfd9fbc824f4795e18a1abafb45b09f035a6f2b6c671d96e0a94c04060661f",
+    "uv.lock": "293fe87ccee630cbbfbea25c174db531e3d9eb2785d43f10228d8fb756c56796"
+  }
+}

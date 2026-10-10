@@ -1,55 +1,79 @@
-# cb-image-alpha — paper replication branch
+# (Re-)Imag(in)ing Price Trends：I20/R20代码复现
 
-原论文美国股票实验的独立复现分支：官方图像/标签 → PaperCNN → 五成员训练 → OOS 指标与组合分析。中国可转债迁移版本保留在 `main`；本分支不把 CB 结果混入论文复现。
+Jiang、Kelly、Xiu（2023，Journal of Finance）原论文的课程复现：**作者成品图像 → 自有CNN → 五成员训练与概率集成 → 分类、十分位及组合评价**。本次覆盖I20/R20一种配置，用20日历史图像预测月度涨跌。论文：[DOI](https://doi.org/10.1111/jofi.13268)；公开图像入口：[作者网站](https://dachxiu.chicagobooth.edu/)。
 
-当前已完成官方公开包可得的 I20/R20 核心链。I5/I60 及其对应 weekly/quarterly 图像不在当前公开图像包中；组合分析已补齐为可审计的 Ret_month proxy 版本，并明确记录与作者 `next_month_ret` sidecar 的差异。严格 endpoint/leakage 结论仍未成立。
+当前分支：[`codex/paper-replication`](https://github.com/Lin7177/cb-image-alpha/tree/codex/paper-replication)。转债迁移版本保留在[`main`](https://github.com/Lin7177/cb-image-alpha/tree/main)。**提交作业请使用上面的分支链接**，仓库根链接默认打开转债版。
 
-## 已有结果
+## 已完成的工作与结果
 
-- P3 五成员 I20/R20 训练已封存，使用官方公开图像/标签包和固定开发区间；checkpoint、恢复 probe、预测及资源账本均有本机证据。
-- P4/r3 已完成一次受监督的已见 OOS 描述性重评：19 年、1,387,781 个保留样本；ensemble ROC AUC **0.537224**、accuracy **0.532823**、cross-entropy **0.690258**。这不是严格无泄漏确认性结果，endpoint_verified=false，也不恢复未见测试资格。
-- I20/R20 的论文风格 pooled/按日期指标、10 分位 EW/VW、H-L 和 turnover 已补齐；收益使用 Ret_month proxy。其余八组配置因公开包缺少对应 image members 而数据阻断，不能用同一月频图像替代。
+基于作者`monthly_20d`图像独立实现训练、验证早停、checkpoint保存/恢复和五成员评价。开发池778,507行，每成员训练544,954 / 验证233,553；五次训练共44个完整epoch、约6.17小时。历史评价为2001-01至2019-11，共1,387,781行、227个月。
 
-论文分支的运行证据位于本机 artifacts/paper-v1/（不提交）；配置覆盖清单见 artifacts/paper-v1/paper-scope-audit.json。转债迁移结果仍保留在 main 的 reports/cb-v1/，不与本分支结论混用。
+| I20/R20指标 | 原文Table II | 本项目五成员集成 |
+|---|---:|---:|
+| EW H-L年化Sharpe | 2.16 | 1.9933 |
+| EW H-L年化算术收益 | 21.00% | 18.3717% |
+| EW月频换手 | 173.00% | 174.2595% |
+| 分类准确率 | 未转录 | 53.2823% |
 
-## 从干净克隆开始
+准确率需结合always-up **53.0220%**理解，增量为**0.2603个百分点**；AUC=0.537224。VW H-L Sharpe=0.3159，结果对权重敏感。全部成员、完整11行原文对照及来源见[公开结果说明](reports/paper-i20r20/README.md)。
 
-已验证平台为 Windows、Python 3.12、PyTorch 2.8.0 + CUDA 12.8。本项目的锁文件只支持 Windows；GPU 实验使用 RTX 5060 Laptop。安装 `uv` 后，在 PowerShell 执行：
+![原文与本项目I20/R20经济结果](reports/paper-i20r20/figures/10_paper_hl_summary.png)
+
+结果属于**单配置受限描述性复现**：采用`Ret_month`代理收益，真实收益端点未验证；历史评价已见、2019只有11个月；未扣交易成本。五成员波动不是置信区间；未重建原始CRSP到图像链路。其他八组和转债扩展不在本次课程范围。
+
+## 从正确分支开始
 
 ```powershell
-git clone https://github.com/Lin7177/cb-image-alpha.git
+git clone --branch codex/paper-replication --single-branch https://github.com/Lin7177/cb-image-alpha.git
 cd cb-image-alpha
-uv sync --locked
-$env:PYTHONPATH = 'src'
-uv run --locked python -m pytest -q
-uv run --locked python scripts/audit_release.py
 ```
 
-首次安装需要网络及相应下载权限；仅在缓存齐全时使用 `--offline`。合成测试无需外部行情数据；可用 CUDA 时会执行相应合成检查。上述测试证明实现行为，不证明模型有预测优势。
+**演示一：重算公开结果。** Python3.12标准库即可，无需数据、GPU或安装项目依赖。
 
-## 复现边界与目录
+```powershell
+python scripts/paper_demo.py --mode results
+```
 
-| 目录 | 内容 |
+该命令验证公开文件摘要，读取已公开的227个月组合表，重算EW/VW年化收益、波动和Sharpe，核对分类分母、基线及五成员波动，并生成可独立打开的HTML。终端打印本次`artifacts/course-demo/<run_id>/`路径；打开其中`report.html`即可查看全部图表。输入是聚合表，不是原始图像重跑。
+
+**演示二：运行同一套CNN与训练保存代码。** 使用Windows、Python3.12及现有`uv.lock`环境；已验证PyTorch2.8.0，默认CPU，无需GPU或外部行情。
+
+```powershell
+uv sync --locked
+uv run --locked python scripts/paper_demo.py --mode workflow
+```
+
+流程为：256训练/128验证合成二值图像 → 原`PaperCNN`与P3引擎运行第1个epoch → 提交checkpoint并停止 → 恢复模型/Adam/RNG继续第2个epoch → 校验恢复概率 → 五概率平均手算例子。它验证代码流程，不产生论文市场结果，也没有现场重训五个成员。CPU速度随机器不同；脚本监督上限180秒。每次运行保存配置、日志、环境、退出码和manifest，写入独立忽略目录。
+
+## 熟悉主体脚本
+
+先读[脚本导读与现场演示](docs/paper-walkthrough.md)，按这个顺序定位：
+
+1. [paper_demo.py](scripts/paper_demo.py)：现在可运行的统一入口，分清公开结果重算与合成流程。
+2. [contracts.py](src/paper_replication/contracts.py)：样本资格、开发池70/30划分、仅训练样本归一化。
+3. [paper_cnn.py](src/cb_image_alpha/models/paper_cnn.py)：64×60输入、三卷积块、二分类输出。
+4. [p3_engine.py](src/paper_replication/p3_engine.py)：Adam、训练/验证、早停、保存与恢复；[p3_checkpoint.py](src/paper_replication/p3_checkpoint.py)负责提交链与摘要。
+5. [paper_p4_portfolio.py](scripts/paper_p4_portfolio.py)：概率排序、EW/VW十分位、H-L及年化公式。
+
+历史正式入口`paper_data.py → prepare_paper_b.py → paper_p3.py → paper_p4_reval.py → paper_p4_portfolio.py`保留用于追溯，绑定特定run、数据清单和门禁。干净克隆没有历史数据、权重和完整manifest；重新正式训练需要取得同源输入、重新明确运行协议和产物目录。不要把旧入口当作通用的一键重训命令。
+
+## 仓库内容与检查
+
+| 位置 | 用途 |
 |---|---|
-| `src/cb_image_alpha/` | 数据解码、样本规则、渲染、CNN、训练与指标 |
-| `configs/` | 冻结的转债数据、切分、训练和 G8 配置 |
-| `scripts/` | 各 Gate 的构建、运行、验收及发布检查入口 |
-| `tests/` | 独立手算、边界、梯度、保存恢复等合成测试 |
-| `docs/` | 主控、契约、方法差异、开发与审计记录 |
-| `reports/cb-v1/` | 可随 Git 分发的聚合结果与来源 SHA-256 |
-| `artifacts/`（本机保留，不提交） | 完整索引、图像、checkpoint、预测、日志、manifest 与失败/恢复证据 |
+| `scripts/paper_demo.py` | 两种现场演示入口 |
+| `src/paper_replication/`、`src/cb_image_alpha/models/paper_cnn.py` | 论文训练主体；共享模型保留历史路径 |
+| `scripts/paper_*.py`、`configs/paper/` | 历史正式评价、分析与冻结配置 |
+| `reports/paper-i20r20/` | 轻量公开聚合数据、10张图、来源与精选验收 |
+| `docs/paper-walkthrough.md` | 阅读、演示与口播导读 |
+| `tests/` | 合成测试；不读取私人行情 |
+| `artifacts/`（忽略） | 本机数据、权重、运行日志和完整历史证据 |
 
-私人 catalog 和历史 `artifacts/` 不随 Git 分发。**仅克隆源码不能恢复既有模型或核验全部本机证据**；必须合法取得相同数据及历史产物，并按 manifest 核对路径、字节摘要和环境。`python scripts/audit_release.py --local-evidence` 只核对本机 G5/G8 产物和冻结代码摘要，不训练或读取外部 catalog。
+早期转债模块和历史文档保留以维持封存指纹与追溯，当前入口聚焦上述论文文件。数据、权重、环境、分享ZIP、论文PDF及外部参考源码不提交；公开聚合表不等于完整重训数据。第三方材料的使用权由其原始许可决定。
 
-`scripts/research_g7.py`、`research_g8.py`、`recover_g8.py` 是绑定特定历史 run 的入口，不是任意数据通用训练命令；不要直接重新运行来覆盖或绕过既有次数限制。G6 重建命令与必要资料见[开发规范](docs/development.md)。根配置、源码与锁保留历史字节，`.gitattributes` 禁止 Git 自动换行转换。
+```powershell
+uv run --locked python -m pytest -q
+python scripts/audit_paper_release.py
+```
 
-外部数据仓库与 `Reference_repository/` 始终只读。论文 PDF、第三方代码、环境、数据和大体积研究产物不提交；第三方参考的再分发许可未获确认。此仓库不授予外部数据或论文材料的使用权。
-
-## 文档入口
-
-- [项目主控路线图 / Checklist](docs/plans/2026-09-10-foundation.md)：唯一当前状态与下一入口
-- [系统架构与冻结契约](docs/architecture.md)
-- [论文与实现迁移地图](docs/migration-map.md)
-- [数据语义与限制](docs/data-audit.md)
-- [开发、复现与发布规范](docs/development.md)
-- [架构决策](docs/adr/0001-owned-minimal-pipeline.md)
+发布审计检查Git文件边界、公开数据摘要与重算、Markdown链接及冻结模型/config/lock摘要。实现测试不证明模型有预测优势。项目动态进度统一见[主控](docs/plans/2026-09-10-foundation.md)；历史协议见[架构](docs/architecture.md)、[数据说明](docs/data-audit.md)及[迁移地图](docs/migration-map.md)。

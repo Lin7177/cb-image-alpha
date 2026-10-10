@@ -1,0 +1,36 @@
+{
+  "protocol": "paper-p3-training-v1",
+  "status": "PASS",
+  "completed_at": "2026-09-18T15:01:25.290275+00:00",
+  "research_auditor": "paper_research_audit",
+  "engineering_auditor": "paper_engineering_audit",
+  "independent_then_cross": true,
+  "cross_result": "no_material_disagreement",
+  "execution_result_sha256": "874ec12ae9d40e5389e958462b3f0b3b250ac8f4fd69923b8b687eb485f0d844",
+  "seal_manifest_before_sha256": "c954d7c97c13c533f02f41136c7e44416a9899ab7479cc40417ac9d3642d2eea",
+  "seal_supervision_sha256": "8b22956cd2f88c223d67042ee9924db5909b0e80be066c10f9068526d2777ad1",
+  "checks": {
+    "members": 5,
+    "all_member_status": "passed",
+    "all_terminal_status": "early_stopped",
+    "best_epochs": [
+      6,
+      8,
+      4,
+      4,
+      12
+    ],
+    "validation_rows_each": 233553,
+    "probe_rows_each": 128,
+    "oos_sealed": true,
+    "endpoint_verified": false,
+    "strict_leakage_free_claim": false,
+    "p4_authorized": false
+  },
+  "limitations": [
+    "RSS sampled at 1s",
+    "Windows atomic visibility is not physical power-loss proof",
+    "Date proxy endpoint remains unverified"
+  ],
+  "next_gate": "P4 separately frozen and authorized; no automatic entry"
+}
