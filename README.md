@@ -4,6 +4,14 @@ Jiang、Kelly、Xiu（2023，Journal of Finance）原论文的课程复现：**�
 
 当前分支：[`paper-replication`](https://github.com/Lin7177/cb-image-alpha/tree/paper-replication)。转债迁移版本保留在[`main`](https://github.com/Lin7177/cb-image-alpha/tree/main)。**提交作业请使用上面的分支链接**，仓库根链接默认打开转债版。
 
+## 图像编码示意图
+
+![图像编码示意图](reports/paper-i20r20/figures/11_image_encoding_example.png)
+
+每张图将20个交易日编码成**宽60 × 高64像素**的黑白图像：白色OHLC线表示每日开、高、低、收，连线表示20日均线，底部竖条表示成交量。
+
+**价格图像 → 三卷积块CNN → 上涨概率 → 五成员概率平均 → 十分位与H-L评价。**
+
 ## 已完成的工作与结果
 
 基于作者`monthly_20d`图像独立实现训练、验证早停、checkpoint保存/恢复和五成员评价。开发池778,507行，每成员训练544,954 / 验证233,553；五次训练共44个完整epoch、约6.17小时。历史评价为2001-01至2019-11，共1,387,781行、227个月。
@@ -64,7 +72,7 @@ uv run --locked python scripts/paper_demo.py --mode workflow
 | `scripts/paper_demo.py` | 两种现场演示入口 |
 | `src/paper_replication/`、`src/cb_image_alpha/models/paper_cnn.py` | 论文训练主体；共享模型保留历史路径 |
 | `scripts/paper_*.py`、`configs/paper/` | 历史正式评价、分析与冻结配置 |
-| `reports/paper-i20r20/` | 轻量公开聚合数据、10张图、来源与精选验收 |
+| `reports/paper-i20r20/` | 轻量公开聚合数据、10张结果/方法图、图像编码示意、来源与精选验收 |
 | `docs/paper-walkthrough.md` | 阅读、演示与口播导读 |
 | `tests/` | 合成测试；不读取私人行情 |
 | `artifacts/`（忽略） | 本机数据、权重、运行日志和完整历史证据 |

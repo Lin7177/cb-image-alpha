@@ -1,0 +1,16 @@
+{
+  "scope": "image encoding illustration only",
+  "source": "CB G3 six Train/Validation acceptance images",
+  "source_path": "artifacts/images/g3-20260911T162533760989Z/contact-sheet.png",
+  "native_shape_height_width": [
+    64,
+    60
+  ],
+  "paper_experiment_input": false,
+  "output": {
+    "path": "figures/11_image_encoding_example.png",
+    "bytes": 8466,
+    "sha256": "41705e349f32aa56855d03df4cf79b3779e37b2f77054ebbed55f6a009c41e6f"
+  },
+  "new_training": false
+}

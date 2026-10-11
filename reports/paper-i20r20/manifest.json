@@ -187,6 +187,20 @@
       "bytes": 2004,
       "sha256": "820837883f858f0426b6eee2d574906d9f1423389c8f2d95a3588a6d4d8d9d02",
       "source_path": "artifacts/paper-v1/p4-reval-20260919-r3/portfolio-i20-r20/analysis_final_audit.json"
+    },
+    {
+      "path": "figures/11_image_encoding_example.png",
+      "bytes": 8466,
+      "sha256": "41705e349f32aa56855d03df4cf79b3779e37b2f77054ebbed55f6a009c41e6f",
+      "source_path": "artifacts/images/g3-20260911T162533760989Z/contact-sheet.png",
+      "scope": "encoding illustration; not part of r3 accepted analysis"
+    },
+    {
+      "path": "input_examples.json",
+      "bytes": 492,
+      "sha256": "15b4437c17e17d1ef71ae145133dd74891265e7778da6e7452545e6b5a877071",
+      "source_path": "artifacts/images/g3-20260911T162533760989Z/contact-sheet.png",
+      "scope": "encoding illustration; not part of r3 accepted analysis"
     }
   ],
   "note": "Copies preserve input bytes. Figure05 uses a synthetic schematic; historical audit evidence does not imply a fresh-clone full training rerun. No private data, checkpoints, sample-level predictions or third-party code."
